@@ -10,11 +10,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Forms.Mvc.Controllers
 {
-    public class StatisticsController : Controller
+    public class ShowAnswersController : Controller
     {
         private readonly IMediator _mediator;
 
-        public StatisticsController(IMediator mediator)
+        public ShowAnswersController(IMediator mediator)
         {
             _mediator = mediator;
         }
