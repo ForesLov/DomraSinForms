@@ -1,11 +1,12 @@
-﻿using DomraSinForms.Domain.Models;
+﻿using DomraSinForms.Domain.Identity;
+using DomraSinForms.Domain.Models;
 using DomraSinForms.Domain.Models.Answers;
 using DomraSinForms.Domain.Models.Questions;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DomraSinForms.Persistence;
-public class ApplicationDbContext : IdentityDbContext
+public class ApplicationDbContext : IdentityDbContext<User>
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)

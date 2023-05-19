@@ -1,6 +1,7 @@
 ﻿using DomraSinForms.Application.Answers.Queries.GetList;
 using Forms.Mvc.Models.Statistics;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Forms.Mvc.Controllers
@@ -20,6 +21,7 @@ namespace Forms.Mvc.Controllers
         /// <param name="formId"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
+        [Authorize]
         public async Task<IActionResult> Summary(string formId)
         {
             var vm = new SummaryViewModel
@@ -36,6 +38,7 @@ namespace Forms.Mvc.Controllers
         /// </summary>
         /// <param name="formId"></param>
         /// <returns></returns>
+        [Authorize]
         public async Task<IActionResult> FormAnswersList(string formId)
         {
             var vm = new FormAnswersViewModel
