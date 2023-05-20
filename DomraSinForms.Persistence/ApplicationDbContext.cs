@@ -2,11 +2,13 @@
 using DomraSinForms.Domain.Models;
 using DomraSinForms.Domain.Models.Answers;
 using DomraSinForms.Domain.Models.Questions;
+using DomraSinForms.Domain.Models.Versions;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DomraSinForms.Persistence;
-public class ApplicationDbContext : IdentityDbContext<User>
+public class ApplicationDbContext : IdentityDbContext<User, IdentityRole, string>
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
@@ -15,6 +17,7 @@ public class ApplicationDbContext : IdentityDbContext<User>
     }
 
     public DbSet<Form> Forms { get; set; }
+    public DbSet<FormVersion> FormVersions { get; set; }
     public DbSet<QuestionBase> Questions { get; set; }
     public DbSet<Answer> Answers { get; set; }
     public DbSet<FormAnswers> FormAnswers { get; set; }
@@ -22,6 +25,7 @@ public class ApplicationDbContext : IdentityDbContext<User>
     public DbSet<TextQuestion> TextQuestions { get; set; }
     public DbSet<OptionsQuestion> OptionsQuestions { get; set; }
     public DbSet<QuestionOption> QuestionOptions { get; set; }
+    //public override DbSet<User> Users { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder
@@ -64,6 +68,10 @@ public class ApplicationDbContext : IdentityDbContext<User>
             .WithOne(q => q.Question)
             .HasForeignKey(q => q.QuestionId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        builder
+            .Entity<User>()
+            .ToTable(nameof(Users));
 
         base.OnModelCreating(builder);
     }

@@ -2,6 +2,7 @@
 using DomraSinForms.Application.Answers.Commands.Update;
 using DomraSinForms.Application.Answers.Queries.GetEmptyForm;
 using DomraSinForms.Application.Forms.Queries.Get;
+using DomraSinForms.Domain.Identity;
 using Forms.Mvc.Models.Answers;
 using Forms.Mvc.Models.Answers.AnswersModels;
 using MediatR;
@@ -14,9 +15,9 @@ namespace Forms.Mvc.Controllers;
 public class AnswersController : Controller
 {
     private readonly IMediator _mediator;
-    private readonly UserManager<IdentityUser> _userManager;
+    private readonly UserManager<User> _userManager;
 
-    public AnswersController(IMediator mediator, UserManager<IdentityUser> userManager)
+    public AnswersController(IMediator mediator, UserManager<User> userManager)
     {
         _mediator = mediator;
         _userManager = userManager;

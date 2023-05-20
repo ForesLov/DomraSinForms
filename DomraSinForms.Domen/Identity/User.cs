@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 
 namespace DomraSinForms.Domain.Identity;
-public class User : IdentityUser
+public class User : IdentityUser<string>
 {
+    public User() : base()
+    {
+        Id = Guid.NewGuid().ToString();
+    }
     public string? NickName { get; set; }
 }

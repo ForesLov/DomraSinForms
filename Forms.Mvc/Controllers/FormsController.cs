@@ -3,6 +3,7 @@ using DomraSinForms.Application.Forms.Commands.Delete;
 using DomraSinForms.Application.Forms.Commands.Update;
 using DomraSinForms.Application.Forms.Queries.Get;
 using DomraSinForms.Application.Forms.Queries.GetList;
+using DomraSinForms.Domain.Identity;
 using Forms.Mvc.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -14,9 +15,9 @@ namespace Forms.Mvc.Controllers;
 public class FormsController : Controller
 {
     private readonly IMediator _mediator;
-    private readonly SignInManager<IdentityUser> _signInManager;
+    private readonly SignInManager<User> _signInManager;
 
-    public FormsController(IMediator mediator, SignInManager<IdentityUser> signInManager)
+    public FormsController(IMediator mediator, SignInManager<User> signInManager)
     {
         _mediator = mediator;
         _signInManager = signInManager;

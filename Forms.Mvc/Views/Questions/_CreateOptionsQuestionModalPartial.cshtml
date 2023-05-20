@@ -34,7 +34,7 @@
                         <input class="form-check-input" type="checkbox" asp-for="AllowMultipleChoice" />
                     </div>
                     <div class="form-group mb-2">
-                        <label class="form-label">@Localizer["Options"]</label>
+                        <div class="h3 text-center mt-4 mb-2">@Localizer["Options"]:</div>
                         <div id="options">
                             @foreach (var option in Model.Options)
                             {

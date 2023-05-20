@@ -6,13 +6,17 @@
     ViewData["Title"] = Localizer["Register"];
 }
 
-<h1>@ViewData["Title"]</h1>
 
-<div class="row">
-    <div class="col-md-4">
+<div class="row g-3 gx-5 justify-content-center">
+    <div class="col-12 text-center display-4">@ViewData["Title"]</div>
+    <div class="col-sm-10 col-md-8 col-xl-6 row g-3 gx-4">
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.UserName" class="form-control" aria-required="true" placeholder="username"/>
+                <label asp-for="Input.UserName">@Localizer["User name"]</label>
+                <span asp-validation-for="Input.UserName" class="text-danger"></span>
+            </div>
             <div class="form-floating mb-3">
                 <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
                 <label asp-for="Input.Email">@Localizer["Email"]</label>
@@ -31,7 +35,18 @@
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">@Localizer["Register"]</button>
         </form>
     </div>
-    <div class="col-md-6 col-md-offset-2">
+    <div class="col-12 text-center row g-3">
+        <p class="h5">
+            <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">@Localizer["Allready has an account? Log in"]</a>
+        </p>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+    @*<div class="col-md-6 col">
         <section>
             <h3>@Localizer["Use another service to register."]</h3>
             <hr />
@@ -60,9 +75,4 @@
                 }
             }
         </section>
-    </div>
-</div>
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+    </div>*@

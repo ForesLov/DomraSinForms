@@ -280,9 +280,6 @@ msgstr "Подтвердить почту"
 msgid "You have successfully logged out of the application."
 msgstr "Вы успешно вышли"
 
-msgid "Register"
-msgstr "Зарегистрироваться"
-
 msgid "Confirm Password"
 msgstr "Подтверждение пароля"
 

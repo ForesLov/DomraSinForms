@@ -1,10 +1,7 @@
 ﻿@using DomraSinForms.Application.Forms.Commands.Update;
-@using DomraSinForms.Application.Forms.Queries.GetList;
 @using DomraSinForms.Application.Questions.Commands.CreateOptionsQuestion;
 @using DomraSinForms.Application.Questions.Commands.CreateTextQuestion;
 @using DomraSinForms.Domain.Models.Questions;
-@using DomraSinForms.Domain.Models;
-@using Forms.Mvc.Services;
 @using Microsoft.AspNetCore.Mvc.Localization;
 @inject IViewLocalizer Localizer
 @model EditFormViewModel
@@ -27,13 +24,14 @@
                         Id = Model.Form.Id,
                         Description = Model.Form.Description,
                         Title = Model.Form.Title,
-                        UserId = Model.Form.CreatorId
+                        UserId = Model.Form.CreatorId,
+                        AllowAnonymous = Model.Form.AllowAnonymous
                     })
                 )
 
         </div>
         <div class="col-12 text-center h4">@Localizer["Questions"]</div>
-        @foreach (var question in Model.Form?.Questions.OrderBy(q => q.Index))
+        @foreach (var question in (IEnumerable<QuestionBase>)Model.Form.Questions.OrderBy(q => q.Index) ?? Array.Empty<QuestionBase>())
         {
             <div class="col-12">
                 @await Html.PartialAsync("/Views/Questions/_QuestionCardPartial.cshtml", question)

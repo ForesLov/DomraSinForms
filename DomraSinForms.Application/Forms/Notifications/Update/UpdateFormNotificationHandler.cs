@@ -1,4 +1,5 @@
-﻿using DomraSinForms.Persistence;
+﻿using DomraSinForms.Domain.Models.Versions;
+using DomraSinForms.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +17,12 @@ public class UpdateFormNotificationHandler : INotificationHandler<UpdateFormNoti
         var uncompletedAnswers = await _context.FormAnswers.Where(fa => fa.FormId == notification.FormId && !fa.IsCompleted).ToArrayAsync();
 
         _context.FormAnswers.RemoveRange(uncompletedAnswers);
+        var form = await _context.Forms
+            .Include(f => f.Version)
+            .FirstAsync(f => f.Id == notification.FormId, cancellationToken);
+
+        form.Version = new FormVersion { FormId = form.Id, CreationDate = DateTime.Now, Index = form.Version?.Index + 1 ?? 1 };
+        _context.Update(form);
 
         await _context.SaveChangesAsync(cancellationToken);
     }
