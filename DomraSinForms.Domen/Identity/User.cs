@@ -8,5 +8,9 @@ using Microsoft.AspNetCore.Identity;
 namespace DomraSinForms.Domain.Identity;
 public class User : IdentityUser<string>
 {
+    public User()
+    {
+        Id = Guid.NewGuid().ToString();
+    }
     public string? NickName { get; set; }
 }
