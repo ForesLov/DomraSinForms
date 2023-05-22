@@ -2,6 +2,7 @@
 using DomraSinForms.Application.Mapper;
 using DomraSinForms.Domain.Models;
 using DomraSinForms.Domain.Models.Questions;
+using DomraSinForms.Domain.Models.Versions;
 
 namespace DomraSinForms.Application.Forms.Queries.GetList;
 
@@ -14,6 +15,8 @@ public class FormDto : IMapWith<Form>
     public DateTime CreationDate { get; set; }
     public DateTime LastUpdateDate { get; set; }
     public List<QuestionBase> Questions { get; set; } = new();
+    public FormVersion? Version { get; set; }
+    public bool IsInArchive { get; set; }
 
     public void Mapping(Profile profile)
     {

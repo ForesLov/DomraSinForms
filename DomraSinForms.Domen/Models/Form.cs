@@ -14,6 +14,6 @@ public class Form : DbEntity
     public DateTime? LastUpdateDate { get; set; }
     public List<QuestionBase> Questions { get; set; } = new();
     public List<FormAnswers> FormAnswers { get; set; } = new();
-    public bool AllowAnonymous { get; set; } = false;
     public FormVersion? Version { get; set; }
+    public bool IsInArchive { get; set; }
 }

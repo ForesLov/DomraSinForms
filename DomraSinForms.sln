@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomraSinForms.Persistence",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forms.Api", "Forms.Api\Forms.Api.csproj", "{63BB9090-8DA8-40A7-862F-D577549C053C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomraSinForms.ChartsWrapper", "DomraSinForms.ChartsWrapper\DomraSinForms.ChartsWrapper.csproj", "{6530CF9E-096C-4EEB-8F92-7B78246FFF11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomraSinForms.ChartsWrapper", "DomraSinForms.ChartsWrapper\DomraSinForms.ChartsWrapper.csproj", "{6530CF9E-096C-4EEB-8F92-7B78246FFF11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

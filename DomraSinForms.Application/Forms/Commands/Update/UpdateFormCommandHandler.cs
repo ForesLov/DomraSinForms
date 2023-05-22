@@ -28,13 +28,12 @@ namespace DomraSinForms.Application.Forms.Commands.Update
                 .Where(f => f.CreatorId == request.UserId)
                 .FirstOrDefaultAsync(f => f.Id == request.Id, cancellationToken);
 
-            if (form is null)
+            if (form is null || form.IsInArchive)
                 return null;
 
             form.Title = request.Title;
             form.Description = request.Description;
             form.LastUpdateDate = DateTime.UtcNow;
-            form.AllowAnonymous = request.AllowAnonymous;
 
             _context.Update(form);
             await _context.SaveChangesAsync(cancellationToken);

@@ -26,6 +26,7 @@ public class CreateFormAnswersCommandHandler : IRequestHandler<CreateFormAnswers
 
         var form = await _context.Forms
             .Include(x => x.Questions)
+            .Include(f => f.Version)
             .FirstOrDefaultAsync(fa => fa.Id == formAnswers.FormId);
 
         if (form is null)
@@ -45,6 +46,7 @@ public class CreateFormAnswersCommandHandler : IRequestHandler<CreateFormAnswers
 
         formAnswers.IsCompleted = true;
         formAnswers.CreationDate = DateTime.UtcNow;
+        formAnswers.FormVersionId = form.Version?.Id;
 
         _context.Update(formAnswers);
         await _context.SaveChangesAsync(cancellationToken);

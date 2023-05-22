@@ -1,7 +1,10 @@
-﻿using DomraSinForms.Application.Answers.Commands.Create;
+﻿using System.Security.Cryptography.Xml;
+using DomraSinForms.Application.Answers.Commands.Create;
 using DomraSinForms.Application.Answers.Commands.Update;
 using DomraSinForms.Application.Answers.Queries.GetEmptyForm;
+using DomraSinForms.Application.Answers.Queries.GetList;
 using DomraSinForms.Application.Forms.Queries.Get;
+using DomraSinForms.Application.Forms.Queries.GetList;
 using DomraSinForms.Domain.Identity;
 using Forms.Mvc.Models.Answers;
 using Forms.Mvc.Models.Answers.AnswersModels;
@@ -16,33 +19,52 @@ public class AnswersController : Controller
 {
     private readonly IMediator _mediator;
     private readonly UserManager<User> _userManager;
+    private readonly SignInManager<User> _signInManager;
+    private readonly ILogger<AnswersController> _logger;
 
-    public AnswersController(IMediator mediator, UserManager<User> userManager)
+    public AnswersController(
+        IMediator mediator, 
+        UserManager<User> userManager, 
+        SignInManager<User> signInManager,
+        ILogger<AnswersController> logger)
     {
         _mediator = mediator;
         _userManager = userManager;
+        _signInManager = signInManager;
+        _logger = logger;
     }
-    /*public async Task<IActionResult> Index(int page = 0, int count = 10, string? searchText = "")
+    [Authorize]
+    public async Task<IActionResult> Index(int page = 0, int count = 10, string searchText = "", FormOrderApproach order = FormOrderApproach.LastUpdateDescending)
     {
-        var result = await _mediator.Send(new GetFormListQuery { Count = count, Page = page, SearchText = searchText ?? "" });
-        return View(result);
-    }*/
-    /*public async Task<IActionResult> Answers(string formId)
-    {
-        var result = await _mediator.Send(new GetFormAnswersListQuery { FormId = formId });
-        return View(result);
-    }*/
+        var userId = _signInManager.UserManager.GetUserId(User);
+        if (userId is null)
+            return NotFound();
+
+        var forms = await _mediator.Send(
+            new GetFormListQuery
+            {
+                Count = count,
+                Page = page,
+                SearchText = searchText,
+                UserId = userId,
+                OrderBy = order,
+            });
+
+        return View(forms);
+    }
     [Authorize]
     public async Task<IActionResult> Fill(string formId)
     {
+        var form = await _mediator.Send(new GetFormQuery { Id = formId });
+
         var userId = _userManager.GetUserId(User);
-        if (userId is null)
+
+        if (form is null || userId is null || form.IsInArchive)
             return RedirectToAction(controllerName: "Home", actionName: "Index");
 
         var command = await _mediator.Send(new GetEmptyFormQuery { FormId = formId, UserId = userId });
-        var form = await _mediator.Send(new GetFormQuery { Id = formId });
 
-        if (command is null || form is null)
+        if (command is null)
             return RedirectToAction(controllerName: "Home", actionName: "Index");
 
         var cvm = new FillFormViewModel(command, form);
