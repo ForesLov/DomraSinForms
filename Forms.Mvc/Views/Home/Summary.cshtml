@@ -1,0 +1,9 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject UserManager<User> UserManager
+@inject IViewLocalizer Localizer
+
+<div class="row g-3 justify-content-center">
+    <div class="col-6">
+        <div class="display-4 text-center">@Localizer.GetString("Hello, {0}!", UserManager.GetUserName(User)!)</div>
+    </div>
+</div>

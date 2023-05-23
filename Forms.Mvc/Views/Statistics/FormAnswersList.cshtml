@@ -20,8 +20,11 @@
         {
             <div class="col-12">
                 <div class="card card-button" data-bs-toggle="modal" data-bs-target="#@formAnswers.Id">
-                    <div class="card-header">@Localizer["Creation date"]: @formAnswers.CreationDate</div>
-                    <div class="card-body">@Localizer["Answers count"]: @formAnswers.Answers.Count</div>
+                    <div class="card-header">@Localizer["Creation date"]: @formAnswers.CreationDate  <span class="text-muted">@(formAnswers.UserNick ?? Localizer["Anonimous"]?.Value)</span></div>
+                    <div class="card-body">
+                        <div>@Localizer["Answers count"]: @formAnswers.Answers.Count</div>
+                        <div>@Localizer["Form version"]: @formAnswers.FormVersion?.Index</div>
+                    </div>
                 </div>
             </div>
             @await Html.PartialAsync("_FormAnswersPartial", formAnswers, new ViewDataDictionary(ViewData){
