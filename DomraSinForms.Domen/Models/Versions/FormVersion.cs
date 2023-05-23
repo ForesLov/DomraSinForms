@@ -9,5 +9,6 @@ public class FormVersion : DbEntity
 {
     public int Index { get; set; } = 1;
     public string FormId { get; set; } = string.Empty;
+    public Form Form { get; set; }
     public DateTime CreationDate { get; set; }
 }

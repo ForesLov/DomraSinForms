@@ -8,22 +8,6 @@
     var searchText = Model.Query.SearchText;
     var order = Model.Query.OrderBy;
 
-    string LastEditFormat(DateTime lastEditDate)
-    {
-        if (lastEditDate == DateTime.MinValue)
-        {
-            return "-";
-        }
-        else if (lastEditDate.Date == DateTime.Today.Date)
-        {
-            return lastEditDate.ToLocalTime().ToShortTimeString();
-        }
-        else
-        {
-            return lastEditDate.ToLocalTime().ToShortDateString();
-        }
-    }
-
     string FormatTextLength(string text, int length = 88)
     {
         if (text.Length >= length)
@@ -101,7 +85,7 @@
                 <a class="card-body text-decoration-none" asp-action="Edit" asp-route-id="@form.Id">
                     <div class="card-title h5">@FormatTextLength(form.Title, 35)</div>
                     <div class="card-text mb-2">@FormatTextLength(form.Description)</div>
-                    <div class="card-text text-muted">@Localizer["Last edit"]: @LastEditFormat(form.LastUpdateDate)</div>
+                    <div class="card-text text-muted">  @Localizer["Last edit"]: @form.FormatLastUpdate(Localizer["Today {0}"]?.Value ?? "") </div>
                 </a>
                 <div class="card-footer">
                     <div class="row g-1 justify-content-end">

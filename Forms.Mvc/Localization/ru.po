@@ -44,6 +44,9 @@ msgstr "Вход"
 
 # Forms
 
+msgid "Today {0}"
+msgstr "Сегодня в {0}"
+
 msgid "Form"
 msgstr "Форма"
 
