@@ -28,6 +28,7 @@ a {
     /*border-color: var(--bs-secondary-color);*/
     color: var(--bs-light-text-emphasis);
     background-color: var(--bs-tertiary-bg);
+    cursor: pointer;
 }
 body[data-bs-theme=light] .card-button:hover {
     border-color: var(--bs-secondary-color);
