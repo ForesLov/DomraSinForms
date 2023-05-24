@@ -36,7 +36,7 @@ public class UserSummaryViewModel
             }
 
             var resultDictionary = new Dictionary<object, object>();
-            foreach (var item in dictionary)
+            foreach (var item in dictionary.OrderBy(d => d.Key))
             {
                 resultDictionary.Add(item.Key, item.Value);
             };
@@ -57,11 +57,10 @@ public class UserSummaryViewModel
             }
 
             var resultDictionary = new Dictionary<object, object>();
-            foreach (var item in dictionary)
+            foreach (var item in dictionary.OrderBy(d => d.Key))
             {
                 resultDictionary.Add(item.Key, item.Value);
             };
-
             return resultDictionary;
         }
     }

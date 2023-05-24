@@ -8,7 +8,11 @@
 
 
 @{
-    var usersFormsActionsOptions = new ChartOptionsBuilder().UsePalette(1).CreateLineChart(Model.FormsActions).Build().Serialize();
+    var usersFormsActionsOptions = new ChartOptionsBuilder()
+    .UsePalette(1)
+    .CreateLineChart(Model.FormsActions)
+    .Build()
+    .Serialize();
     var usersAnswersOptions = new ChartOptionsBuilder().UsePalette(1).CreateLineChart(Model.AnswersActions).Build().Serialize();
 }
 
@@ -44,19 +48,25 @@
     </div>
 
     <div class="col-12 col-md-6 col-xl-4">
+        @*<div class="col-12">
+            <div class="display-6 mb-4 text-center">
+                @Localizer["Last edited forms"]:
+            </div>
+        </div>*@
         <div class="card h-100">
-            <div class="card-header">
-                <div class="display-6 text-center my-3">
+            <div class="card-body">
+                <div class="h3 text-center my-3">
                     @Localizer["Your actions summary"]:
                 </div>
             </div>
-            <div class="card-img-bottom" id="chart-userFormsActions"></div>
+            <div class="card-img" id="chart-userFormsActions"></div>
+            
         </div>
     </div>
     <div class="col-12 col-md-6 col-xl-4">
         <div class="card h-100">
-            <div class="card-header">
-                <div class="h5 text-center my-3">
+            <div class="card-body">
+                <div class="h3 text-center my-3">
                     @Localizer["Your answers summary"]:
                 </div>
             </div>
