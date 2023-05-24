@@ -13,7 +13,7 @@
 @inject IViewLocalizer Localizer
 @model SummaryViewModel
 @{
-    ViewData["Title"] = Localizer["Form answers"];
+    ViewData["Title"] = Localizer["Form answers"]?.Value;
     Dictionary<object, object> GetCountData(QuestionSummary summary)
     {
         var result = new Dictionary<object, object>();
@@ -37,38 +37,24 @@
         return result;
     }
 }
-<div class="row g-3 justify-content-center">
-    <div class="col-sm-10 col-md-8 col-xl-6 row g-3">
-        <!--Navigation-->
-        <div class="col-12 col-md-6">
-            <a class="btn btn-secondary form-control">@Localizer["Summary"]</a>
-        </div>
-        <div class="col-12 col-md-6">
-            <a class="btn btn-outline-secondary form-control" asp-action="FormAnswersList" asp-route-formId="@Model.FormId">@Localizer["All answers"]</a>
-        </div>
+<div class="row g-4 justify-content-center">
+    <div class="col-12 row g-4 justify-content-center">
+        @await Html.PartialAsync("_StatisticsNavigationPartial")
+    </div>
+</div>
 
+<div class="row g-3 justify-content-center">
+    <div class="col-sm-1 col-md-3 col-xl-3"></div>
+    <div class="col-sm-12 col-md-6 col-xl-6 row g-3 gx-4">
         @foreach (var question in Model.Questions.OrderBy(q => q.Question.Index))
         {
                 <div class="col-12">
                 @await Html.PartialAsync("_AnsweredQuestionPartial", question)
                 </div>
         }
-        @*<div class="col-12">
-            <div class="card">
-                <div class="card-footer bg-light-subtle">
-                    <div class="text-center img-fluid justify-content-center" id="chart1"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="text-center img-fluid justify-content-center" id="chart2"></div>
-        </div>
-        <div class="col-12">
-            <div class="text-center img-fluid justify-content-center" id="chart3"></div>
-        </div>
-        <div class="col-12">
-            <div class="text-center img-fluid justify-content-center" id="chart4"></div>
-        </div>*@
+    </div>
+    <div class="col-sm-12 col-md-3 col-xl-3 col-12 mt-sm-0 mt-5">
+        @await Html.PartialAsync("_FormNavigationPartial", Model.FormId)
     </div>
 </div>
 @section scripts {
