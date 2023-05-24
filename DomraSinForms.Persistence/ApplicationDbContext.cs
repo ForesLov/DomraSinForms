@@ -31,7 +31,7 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole, string
         builder
             .Entity<Form>()
             .HasMany<FormAnswers>(fa => fa.FormAnswers)
-            .WithOne()
+            .WithOne(fa => fa.Form)
             .HasForeignKey(fa => fa.FormId)
             .OnDelete(DeleteBehavior.Cascade);
 

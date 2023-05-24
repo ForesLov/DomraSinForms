@@ -81,11 +81,11 @@
     @foreach (var form in Model.Forms)
     {
         <div class="col-12 col-md-6 col-xl-4">
-            <div class="card card-button @(form.IsInArchive ? "text-muted" : "")" asp-action="Edit" asp-route-id="@form.Id" style="height: 15rem;">
+            <div class="card h-100 card-button @(form.IsInArchive ? "text-muted" : "")" asp-action="Edit" asp-route-id="@form.Id" style="height: 15rem;">
                 <a class="card-body text-decoration-none" asp-action="Edit" asp-route-id="@form.Id">
                     <div class="card-title h5">@FormatTextLength(form.Title, 35)</div>
                     <div class="card-text mb-2">@FormatTextLength(form.Description)</div>
-                    <div class="card-text text-muted">  @Localizer["Last edit"]: @form.FormatLastUpdate(Localizer["Today {0}"]?.Value ?? "") </div>
+                    <div class="card-text text-muted small align-text-bottom">@Localizer["Last edit"]: @form.FormatLastUpdate(Localizer["Today {0}"]?.Value ?? "") </div>
                 </a>
                 <div class="card-footer">
                     <div class="row g-1 justify-content-end">

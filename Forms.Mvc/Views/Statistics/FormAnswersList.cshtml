@@ -20,7 +20,7 @@
         {
             <div class="col-12">
                 <div class="card card-button" data-bs-toggle="modal" data-bs-target="#@formAnswers.Id">
-                    <div class="card-header">@Localizer["Creation date"]: @formAnswers.CreationDate  <span class="text-muted">@(formAnswers.UserNick ?? Localizer["Anonimous"]?.Value)</span></div>
+                    <div class="card-header">@Localizer["Creation date"]: @formAnswers.CreationDate  <span class="text-muted small">@(formAnswers.UserNick ?? Localizer["Anonymous"]?.Value)</span></div>
                     <div class="card-body">
                         <div>@Localizer["Answers count"]: @formAnswers.Answers.Count</div>
                         <div>@Localizer["Form version"]: @formAnswers.FormVersion?.Index</div>

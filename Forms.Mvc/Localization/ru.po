@@ -50,8 +50,14 @@ msgstr "Сегодня в {0}"
 msgid "Form"
 msgstr "Форма"
 
+msgid "Form version"
+msgstr "Версия формы"
+
 msgid "Fill form"
 msgstr "Заполнение формы"
+
+msgid "My forms"
+msgstr "Мои формы"
 
 msgid "Creation date"
 msgstr "Дата создания"
@@ -94,6 +100,9 @@ msgstr "Поиск"
 
 msgid "Search ..."
 msgstr "Поиск ..."
+
+msgid "Anonymous"
+msgstr "Анонимно"
 
 msgid "Questions"
 msgstr "Вопросы"
@@ -194,6 +203,7 @@ msgid "New optioin"
 msgstr "Новый вариант"
 
 # Base commands
+
 msgid "Save"
 msgstr "Сохранить"
 
@@ -218,10 +228,27 @@ msgstr "Создать"
 msgid "Order by"
 msgstr "Сортировать по"
 
+#
 # Statistics module
+#
+
+msgid "Hello, {0}!"
+msgstr "Здравствуйте, {0}!"
 
 msgid "Show statistics"
 msgstr "Статистика"
+
+msgid "Last edited forms"
+msgstr "Последние изменения"
+
+msgid "Last completed forms"
+msgstr "Последние пройденые формы"
+
+msgid "Your actions summary"
+msgstr "Сводка вашей активности"
+
+msgid "Your answers summary"
+msgstr "Сводка прохождения форм"
 
 msgid "Show answers"
 msgstr "Ответы"
