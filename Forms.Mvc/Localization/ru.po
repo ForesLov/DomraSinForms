@@ -9,6 +9,7 @@ msgid "by IS2-19"
 msgstr "ИС2-19"
 
 # Home page
+
 msgid "DomraSin is a software for creating Forms (tests or questionnaire) that you can use for free"
 msgstr "DomraSin -  это ПО для создания форм (тестов или анкет), которое вы можете использовать бесплатно"
 
@@ -20,6 +21,9 @@ msgstr "Что такое DomraSinForms"
 
 msgid "About us"
 msgstr "О нас"
+
+msgid "Link"
+msgstr "Ссылка"
 
 msgid "Language"
 msgstr "Язык"

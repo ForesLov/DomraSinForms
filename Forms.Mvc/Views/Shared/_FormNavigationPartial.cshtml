@@ -4,31 +4,60 @@
     string GetClass(string item)
     {
         var title = ViewData["Title"] as string;
-        return ViewData["Title"] as string == item ? "active" : "";
+        return IsCurrentView(item) ? "active" : "";
+    }
+    bool IsCurrentView(string viewName)
+    {
+        return ViewData["Title"] as string == viewName;
     }
 }
 
-<ul class="nav flex-column nav-pills">
-    <li class="nav-item">
-        <a class="nav-link link-secondary @GetClass(Localizer["Editing"]?.Value ?? "")" asp-controller="Forms" asp-action="Edit" asp-route-id="@Model">
-            <i class="bi-pencil me-2"></i>@Localizer["Edit"]
+<ul class="list-group">
+    <li class="list-group-item @GetClass(Localizer["Editing"]?.Value ?? "" )">
+        <a class="nav-link " asp-controller="Forms" asp-action="Edit" asp-route-id="@Model">
+            <i class="bi-pencil me-2"></i>@Localizer["Editing"]
         </a>
     </li>
-    <li class="nav-item">
-        <a 
-            class="nav-link link-success @GetClass(Localizer["Form answers"]?.Value ?? "") @GetClass(Localizer["All answers"]?.Value ?? "")" 
-            asp-controller="Statistics" 
-            asp-route-formId="@Model" 
-            asp-action="Summary">
-            <i class="bi-card-checklist me-3" ></i>@Localizer["Show answers"]
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link link-secondary" asp-controller="Answers" asp-action="Fill" asp-route-formId="@Model">
+    @if (IsCurrentView(Localizer["Form answers"]?.Value ?? "") | IsCurrentView(Localizer["All answers"]?.Value ?? ""))
+    {
+        <li class="list-group-item list-group-item-secondary @GetClass(Localizer["Form answers"]?.Value ?? "")">
+            <a class="nav-link"
+               aria-current="true"
+               asp-controller="Statistics"
+               asp-route-formId="@Model"
+               asp-action="Summary">
+                <i class="bi-bar-chart me-3"></i>@Localizer["Form answers"]
+            </a>
+        </li>
+        <li class="list-group-item list-group-item-secondary @GetClass(Localizer["All answers"]?.Value ?? "")">
+            <a class="nav-link"
+               aria-current="true"
+               asp-controller="Statistics"
+               asp-route-formId="@Model"
+               asp-action="FormAnswersList">
+                <i class="bi-list-ul me-3"></i>@Localizer["All answers"]
+            </a>
+        </li>
+    }
+    else
+    {
+        <li class="list-group-item @GetClass(Localizer["Form answers"]?.Value ?? "") @GetClass(Localizer["All answers"]?.Value ?? "")">
+            <a class="nav-link"
+               aria-current="true"
+               asp-controller="Statistics"
+               asp-route-formId="@Model"
+               asp-action="Summary">
+                <i class="bi-card-checklist me-3"></i>@Localizer["Show answers"]
+            </a>
+        </li>
+    }
+    
+    <li class="list-group-item">
+        <a class="nav-link" asp-controller="Answers" asp-action="Fill" asp-route-formId="@Model">
             <i class="bi-input-cursor-text me-3"></i>@Localizer["Fill"]
         </a>
     </li>
-    <li class="nav-item">
+    <li class="list-group-item">
         <a class="nav-link link-info" data-bs-toggle="modal" data-bs-target="#shareModal">
             <i class="bi-share me-3"></i>@Localizer["Share"]
         </a>
@@ -36,3 +65,4 @@
 </ul>
 
 @await Html.PartialAsync("/Views/Forms/_ShareModalPartial.cshtml", Model, new ViewDataDictionary(ViewData){{"ModalId", $"shareModal"}})
+

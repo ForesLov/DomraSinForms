@@ -17,10 +17,12 @@ public class FormDto : IMapWith<Form>
     public List<QuestionBase> Questions { get; set; } = new();
     public FormVersion? Version { get; set; }
     public bool IsInArchive { get; set; }
+    public int AnswersCount { get; set; }
 
     public void Mapping(Profile profile)
     {
-        profile.CreateMap<FormDto, Form>()
+        profile.CreateMap<Form, FormDto>()
+            .ForMember(dto => dto.AnswersCount, opt => opt.MapFrom(form => form.FormAnswers.Count))
             .ReverseMap();
     }
 }

@@ -16,7 +16,8 @@
                     <div class="card-body">
                         <div class="card-title h5">@form.Title</div>
                         <div>@form.Description</div>
-                        <div>@Localizer["Form version"]: @(form.Version?.Index ?? 0)</div>
+                        <div>@Localizer["Answers count"]: @(form.AnswersCount)</div>
+                        <div class="text-muted small">@Localizer["Form version"]: @(form.Version?.Index ?? 0)</div>
                     </div>
                 </a>
             </div>
