@@ -12,6 +12,6 @@ public class FormAnswers : DbEntity
     public DateTime CreationDate { get; set; }
     public string UserId { get; set; } = string.Empty;
     public User User { get; set; }
-    public string? FormVersionId { get; set; }
-    public FormVersion? FormVersion { get; set; }
+    /*public string? FormVersionId { get; set; }
+    public FormVersion? FormVersion { get; set; }*/
 }

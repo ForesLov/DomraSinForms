@@ -30,14 +30,14 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole, string
     {
         builder
             .Entity<Form>()
-            .HasMany<FormAnswers>(fa => fa.FormAnswers)
+            .HasMany(fa => fa.FormAnswers)
             .WithOne(fa => fa.Form)
             .HasForeignKey(fa => fa.FormId)
             .OnDelete(DeleteBehavior.Cascade);
 
         builder
             .Entity<Form>()
-            .HasMany<QuestionBase>(fa => fa.Questions)
+            .HasMany(fa => fa.Questions)
             .WithOne()
             .HasForeignKey(qb => qb.FormId)
             .OnDelete(DeleteBehavior.Cascade);
@@ -58,13 +58,19 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole, string
 
         builder
             .Entity<FormAnswers>()
-            .HasMany<Answer>(fa => fa.Answers)
+            .HasMany(fa => fa.Answers)
             .WithOne()
             .OnDelete(DeleteBehavior.Cascade);
+        /*builder
+            .Entity<FormAnswers>()
+            .HasOne(fa => fa.FormVersion)
+            .WithMany()
+            .HasForeignKey(fa => fa.FormVersionId)
+            .OnDelete(DeleteBehavior.NoAction);*/
 
         builder
             .Entity<OptionsQuestion>()
-            .HasMany<QuestionOption>(q => q.Options)
+            .HasMany(q => q.Options)
             .WithOne(q => q.Question)
             .HasForeignKey(q => q.QuestionId)
             .OnDelete(DeleteBehavior.Cascade);

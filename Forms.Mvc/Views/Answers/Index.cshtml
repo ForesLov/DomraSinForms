@@ -3,7 +3,9 @@
 @using Microsoft.AspNetCore.Mvc.Localization;
 @inject IViewLocalizer Localizer
 @model FormListDto
-
+@{
+    ViewData["Title"] = Localizer["Answers"]?.Value;
+}
 <div class="row g-3 gx-5 justify-content-center">
     <div class="col-sm-10 col-md-8 col-xl-6 row g-3 gx-4">
         <div class="col-12">

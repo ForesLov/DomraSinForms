@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    options.UseSqlServer(connectionString);
+    options.UseSqlServer(connectionString, options => options.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.GetName().Name));
 });
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

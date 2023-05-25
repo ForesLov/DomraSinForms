@@ -22,7 +22,7 @@ namespace DomraSinForms.Application.Answers.Queries.Get
             var formAnswers = await _context.FormAnswers
                 .Include(f => f.Answers)
                 .Include(f => f.User)
-                .Include(f => f.FormVersion)
+                //.Include(f => f.FormVersion)
                 .FirstOrDefaultAsync(f => f.Id == request.Id, cancellationToken);
 
             if (formAnswers is null)

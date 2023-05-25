@@ -324,6 +324,9 @@ msgstr "Имя пользователя"
 msgid "Nick"
 msgstr "Псевдоним"
 
+msgid "Not specified"
+msgstr "Не указано"
+
 msgid "Nickname"
 msgstr "Псевдоним"
 

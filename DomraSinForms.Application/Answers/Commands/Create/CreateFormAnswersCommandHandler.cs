@@ -46,7 +46,7 @@ public class CreateFormAnswersCommandHandler : IRequestHandler<CreateFormAnswers
 
         formAnswers.IsCompleted = true;
         formAnswers.CreationDate = DateTime.UtcNow;
-        formAnswers.FormVersionId = form.Version?.Id;
+        //formAnswers.FormVersionId = form.Version?.Id;
 
         _context.Update(formAnswers);
         await _context.SaveChangesAsync(cancellationToken);

@@ -13,12 +13,12 @@ public class FormAnswersDto : IMapWith<FormAnswers>
     public DateTime CreationDate { get; set; }
     public List<Answer> Answers { get; set; } = new();
     public string UserNick { get; set; } = string.Empty;
-    public FormVersion? FormVersion { get; set; }
+    //public FormVersion? FormVersion { get; set; }
     public void Mapping(Profile profile)
     {
         profile.CreateMap<FormAnswers, FormAnswersDto>()
             .ForMember(dto => dto.UserNick, opt => opt.MapFrom(fa => fa.User.NickName))
-            .ForMember(dto => dto.FormVersion, opt => opt.MapFrom(fa => fa.FormVersion ?? null))
+            //.ForMember(dto => dto.FormVersion, opt => opt.MapFrom(fa => fa.FormVersion ?? null))
             .ReverseMap();
     }
 }
