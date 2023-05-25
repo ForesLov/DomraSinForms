@@ -9,7 +9,7 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item">
-            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@*@User.Identity?.Name*@
+            <a class="nav-link" asp-controller="User" asp-action="Profile" title="Manage">@*@User.Identity?.Name*@
                 @Localizer["Profile"]<i class="bi-person-circle ms-2 me-2"></i>
             </a>
     </li>

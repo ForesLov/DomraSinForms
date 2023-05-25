@@ -278,8 +278,9 @@ msgstr "Количество ответов"
 msgid "Answers"
 msgstr "Ответы"
 
+#
 #Identity
-
+#
 
 msgid "Email"
 msgstr "Email"
@@ -316,6 +317,24 @@ msgstr "Вы успешно вышли"
 
 msgid "Confirm Password"
 msgstr "Подтверждение пароля"
+
+msgid "Username"
+msgstr "Имя пользователя"
+
+msgid "Nick"
+msgstr "Псевдоним"
+
+msgid "Nickname"
+msgstr "Псевдоним"
+
+msgid "Change user data"
+msgstr "Изменить пользовательские данные"
+
+msgid "(Optional)"
+msgstr "(Опционально)"
+msgid "(Only Latin letters are allowed)"
+msgstr "(Допускаются только латинские буквы)"
+
 
 # Validation
 

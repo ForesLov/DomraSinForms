@@ -1,0 +1,34 @@
+﻿@inject IViewLocalizer Localizer
+@model DomraSinForms.Domain.Identity.User
+@{
+
+}
+<div class="row g-3 justify-content-center">
+    <div class="col-sm-12 col-md-6 col-xl-6 row g-3 gx-4">
+        <div class="form-group">
+            <label class="form-label">@Localizer["Username"]</label>
+            <input class="form-control" asp-for="UserName" disabled/>
+        </div>
+        <div class="form-group">
+            <label class="form-label">@Localizer["Email"]</label>
+            <input class="form-control" asp-for="Email" disabled/>
+        </div>
+        <div class="form-group">
+            <label class="form-label">@Localizer["Nick"]</label>
+            <input class="form-control" asp-for="NickName" disabled/>
+        </div>
+        <div class="form-group">
+            <button class="form-control btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editProfileModal">@Localizer["Change user data"]</button>
+        </div>
+    </div>
+</div>
+
+@(
+await Html.PartialAsync(
+        "_EditUserModalPartial", 
+        new EditUserViewModel{ Email = Model.Email, NickName = Model.NickName, Username = Model.UserName},
+        new ViewDataDictionary(ViewData)
+        {
+            {"ModalId", "editProfileModal"}
+        })
+)

@@ -20,6 +20,7 @@ builder.Services.AddDefaultIdentity<User>(options =>
     options.SignIn.RequireConfirmedEmail = false;
     options.SignIn.RequireConfirmedPhoneNumber = false;
     options.Lockout.MaxFailedAccessAttempts = 700;
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.MinValue;
 })
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services
