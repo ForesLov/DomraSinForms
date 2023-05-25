@@ -304,7 +304,7 @@ msgid "Use another service to log in."
 msgstr "Использовать другой сервис для входа."
 
 msgid "There are no external authentication services configured. See this <a href=\"https://go.microsoft.com/fwlink/?LinkID=532715\">article about setting up this ASP.NET application to support logging in via external services</a>."
-msgstr "Глупый текст"
+msgstr ""
 
 msgid "Log in using your {0} account"
 msgstr "Войти используя ваш {0} аккаунт"
@@ -335,8 +335,9 @@ msgstr "(Опционально)"
 msgid "(Only Latin letters are allowed)"
 msgstr "(Допускаются только латинские буквы)"
 
-
+#
 # Validation
+#
 
 msgid "The Title field is required."
 msgstr "Поле Название должно быть заполнено."
