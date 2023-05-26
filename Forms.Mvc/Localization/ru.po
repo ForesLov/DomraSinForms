@@ -245,7 +245,7 @@ msgid "Show statistics"
 msgstr "Статистика"
 
 msgid "Answers statistics"
-msgstr "Статистика прохождения вопросов"
+msgstr "Статистика ответов"
 
 msgid "Last edited forms"
 msgstr "Последние изменения"
