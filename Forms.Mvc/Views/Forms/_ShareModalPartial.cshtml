@@ -16,35 +16,44 @@
                 <div class="card-text h4">@Localizer["Link"]:</div>
                 <div class="input-group my-3">
                     <input class="form-control" value="@url" id="input@(formattedId)" />
-                    <button class="btn btn-outline-info" id="button@(formattedId)"><i class="bi-clipboard2-plus"></i></button>
+                    <button 
+                        class="btn btn-outline-info" 
+                        id="button@(formattedId)"
+                        data-bs-toggle="popover" data-bs-content='@Localizer["Copied"]'>
+                        <i class="bi-clipboard2-plus"></i>
+                    </button>
                 </div>
                 <div class="form-group" >
-                    <button class="btn btn-outline-secondary form-control" data-bs-dismiss="modal">@Localizer["Ok"]</button>
+                    <button class="btn btn-outline-secondary form-control" data-bs-dismiss="modal">
+                        @Localizer["Ok"]
+                    </button>
                 </div>
             </div>
 
         </div>
     </div>
 </div>
+
+
 <script>
-    console.log(document);
-    document.addEventListener("load", loadEvent => {
-        document.getElementById("button@(formattedId)").addEventListener("click", clickEvent => {
-            let input = document.getElementById("input@(formattedId)");
-            console.log(input);
-            let copyText = document.getElementById("input@(formattedId)").value;
-            document.getElementById("input@(formattedId)").select();
 
-            if(!navigator.clipboard) {
-                console.error("can't copy");
-                return;
-            }
+    var btn = document.getElementById("button@(formattedId)");
+    btn.addEventListener("click", async (clickEvent) => {
 
-            navigator.clipboard.writeText(copyText)
-                .then(ok => console.log('Its ok'))
-                .catch(err => console.log('Something went wrong', err));
-        });
+        const input = document.getElementById("input@(formattedId)");
+        const copyText = document.getElementById("input@(formattedId)").value;
+        document.getElementById("input@(formattedId)").select();
+
+        if (!navigator.clipboard) {
+            console.error("Can't copy");
+            return;
+        }
+        await navigator.clipboard.writeText(copyText);
     });
+    //document.addEventListener('load', () => {
+    //    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    //    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    //});
 
-    
 </script>
+

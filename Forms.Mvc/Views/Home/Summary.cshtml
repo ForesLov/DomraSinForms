@@ -12,9 +12,15 @@
     var usersFormsActionsOptions = new ChartOptionsBuilder()
     .UsePalette(1)
     .CreateLineChart(Model.FormsActions)
+    .UseLineStyle(LineStroke.Smooth)
     .Build()
     .Serialize();
-    var usersAnswersOptions = new ChartOptionsBuilder().UsePalette(1).CreateLineChart(Model.AnswersActions).Build().Serialize();
+    var usersAnswersOptions = new ChartOptionsBuilder()
+    .UsePalette(1)
+    .CreateLineChart(Model.AnswersActions)
+    .UseLineStyle(LineStroke.Smooth)
+    .Build()
+    .Serialize();
 }
 
 <div class="row g-5 mt-5 justify-content-center">

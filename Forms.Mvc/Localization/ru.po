@@ -150,7 +150,9 @@ msgstr "Спасибо!"
 msgid "This form has been send."
 msgstr "Форма была отправлена."
 
+#
 # Questions
+#
 
 msgid "Question"
 msgstr "Вопрос"
@@ -241,6 +243,9 @@ msgstr "Здравствуйте, {0}!"
 
 msgid "Show statistics"
 msgstr "Статистика"
+
+msgid "Answers statistics"
+msgstr "Статистика прохождения вопросов"
 
 msgid "Last edited forms"
 msgstr "Последние изменения"

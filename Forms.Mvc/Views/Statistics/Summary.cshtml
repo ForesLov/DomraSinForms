@@ -9,6 +9,7 @@
 @using Newtonsoft.Json.Serialization;
 @using DomraSinForms.ChartsWrapper.ApexCharts.Charts.BarChart;
 @using DomraSinForms.ChartsWrapper.ApexCharts.Charts.PieChart;
+@using DomraSinForms.ChartsWrapper.ApexCharts.Charts.LineChart;
 @using DomraSinForms.ChartsWrapper.ApexCharts.Extensions;
 @inject IViewLocalizer Localizer
 @model SummaryViewModel
@@ -36,6 +37,28 @@
         }
         return result;
     }
+    Dictionary<object, object> AnswersActions(IEnumerable<FormAnswersDto> formAnswers)
+    {
+        var dictionary = new Dictionary<string, int>();
+
+        foreach (var answers in formAnswers)
+        {
+            if (!dictionary.TryAdd(answers.CreationDate.ToShortDateString(), 1))
+                dictionary[answers.CreationDate.ToShortDateString()] += 1;
+        }
+
+        var resultDictionary = new Dictionary<object, object>();
+        foreach (var item in dictionary.OrderBy(d => d.Key))
+        {
+            resultDictionary.Add(item.Key, item.Value);
+        };
+        return resultDictionary;
+    }
+    var formChartOptions = new ChartOptionsBuilder()
+    .UsePalette(1)
+    .CreateLineChart(AnswersActions(Model.AnswersDto), LineChartDataType.Area)
+    .UseLineStyle(LineStroke.Smooth)
+    .Build().Serialize();
 }
 <div class="h1 text-center">
     @Localizer["Form answers"]
@@ -43,7 +66,15 @@
 
 <div class="row g-3 justify-content-center">
     <div class="col-sm-1 col-md-3 col-xl-3"></div>
-    <div class="col-sm-12 col-md-6 col-xl-6 row g-3 gx-4">
+    <div class="col-sm-12 col-md-6 col-xl-6 row g-3 gx-4 justify-content-center">
+        <div class="col-12 my-5">
+            <div class="card">
+                <div class="card-body">
+                    <div class="display-6 text-center my-3">@Localizer["Answers statistics"]:</div>
+                    <div id="chart-formChart"></div>
+                </div>
+            </div>
+        </div>
         @foreach (var question in Model.Questions.OrderBy(q => q.Question.Index))
         {
                 <div class="col-12">
@@ -64,6 +95,8 @@
                 console.log()
                 chart.render();
             }
+
+            WriteChart('chart-formChart',JSON.parse('@formChartOptions'))
         </script>
     @foreach (var question in Model.Questions)
     {
@@ -90,6 +123,12 @@
 
         
     }
+    <script>
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+    </script>
 }
 <style>
     .apexcharts-canvas {

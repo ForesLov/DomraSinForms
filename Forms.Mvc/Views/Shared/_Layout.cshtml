@@ -17,8 +17,8 @@
     <link rel="stylesheet" href="~/Forms.Mvc.styles.css" asp-append-version="true" />
     <link rel="icon" href="~/favicon.ico">
 </head>
-<body data-bs-theme="">
-    <header>
+<body class="d-flex flex-column min-vh-100" data-bs-theme="">
+    <header class="flex-fill ">
         <nav class="navbar navbar-expand-md navbar-toggleable-md navbar-light border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
@@ -51,7 +51,7 @@
         </nav>
     </header>
 
-    <main role="main" class="pb-3 mb-5">
+    <main role="main" class="pb-3 mb-5 flex-fill">
         <div class="container">
             @RenderBody()
         </div>
