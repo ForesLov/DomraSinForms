@@ -1,4 +1,5 @@
-﻿@inject IViewLocalizer Localizer
+﻿@using DomraSinForms.Application.Users.Update;
+@inject IViewLocalizer Localizer
 @model DomraSinForms.Domain.Identity.User
 @{
     ViewData["Title"] = Localizer["Profile"];
@@ -36,7 +37,7 @@
 @(
 await Html.PartialAsync(
         "_EditUserModalPartial", 
-        new EditUserViewModel{ Email = Model.Email, NickName = Model.NickName, Username = Model.UserName},
+        new UpdateUserCommand{ Id= Model.Id, Email = Model.Email, NickName = Model.NickName, Username = Model.UserName},
         new ViewDataDictionary(ViewData)
         {
             {"ModalId", "editProfileModal"}

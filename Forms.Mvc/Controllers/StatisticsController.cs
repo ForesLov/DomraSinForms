@@ -1,5 +1,5 @@
 ﻿using DomraSinForms.Application.Answers.Queries.GetList;
-using Forms.Mvc.Models.Statistics;
+using Forms.Mvc.ViewModels.Statistics;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

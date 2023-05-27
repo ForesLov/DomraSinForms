@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using DomraSinForms.Application.Users.Queries;
 using DomraSinForms.Domain.Identity;
-using Forms.Mvc.Models;
+using Forms.Mvc.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;

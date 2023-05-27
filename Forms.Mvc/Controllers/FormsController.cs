@@ -4,7 +4,7 @@ using DomraSinForms.Application.Forms.Commands.Update;
 using DomraSinForms.Application.Forms.Queries.Get;
 using DomraSinForms.Application.Forms.Queries.GetList;
 using DomraSinForms.Domain.Identity;
-using Forms.Mvc.Models;
+using Forms.Mvc.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -77,17 +77,7 @@ public class FormsController : Controller
             return RedirectToIndex();
 
         return View(
-            new EditFormViewModel
-            {
-                Form = form,
-                UpdateFormCommand = new UpdateFormCommand
-                {
-                    Id = form.Id,
-                    Description = form.Description,
-                    Title = form.Title,
-                    UserId = userId
-                }
-            });
+            new EditFormViewModel { Form = form });
     }
     [HttpPost, Authorize]
     public async Task<IActionResult> Edit([Bind] UpdateFormCommand command)

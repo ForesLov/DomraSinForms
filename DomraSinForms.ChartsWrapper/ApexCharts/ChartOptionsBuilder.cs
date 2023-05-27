@@ -1,4 +1,7 @@
-﻿namespace DomraSinForms.ChartsWrapper.ApexCharts;
+﻿using DomraSinForms.ChartsWrapper.ApexCharts;
+using DomraSinForms.ChartsWrapper.ApexCharts.ToolBar;
+
+namespace DomraSinForms.ChartsWrapper.ApexCharts;
 public class ChartOptionsBuilder : IChartOptionsBuilder
 {
     protected ChartOptions _options = new();
@@ -20,5 +23,14 @@ public class ChartOptionsBuilder : IChartOptionsBuilder
     public ChartOptions Build()
     {
         return _options;
+    }
+
+    public IChartOptionsBuilder SetupToolBar(Action<IToolBarOptionsBuilder> toolBarSetupAction)
+    {
+        var toolBarOptionsBuilder = new ToolBarOptionsBuilder();
+        toolBarSetupAction.Invoke(toolBarOptionsBuilder);
+
+        _options.Chart.ToolBar = toolBarOptionsBuilder.Build();
+        return this;
     }
 }

@@ -1,5 +1,7 @@
-﻿using DomraSinForms.Domain.Identity;
-using Forms.Mvc.Models;
+﻿using DomraSinForms.Application.Users.Update;
+using DomraSinForms.Domain.Identity;
+using Forms.Mvc.ViewModels;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -11,10 +13,12 @@ namespace Forms.Mvc.Controllers;
 public class UserController : Controller
 {
     private readonly UserManager<User> _userManager;
+    private readonly IMediator _mediator;
 
-    public UserController(UserManager<User> userManager)
+    public UserController(UserManager<User> userManager, IMediator mediator)
     {
         _userManager = userManager;
+        _mediator = mediator;
     }
     public async Task<IActionResult> Profile()
     {
@@ -22,30 +26,11 @@ public class UserController : Controller
         return View(user);
     }
     [HttpPost]
-    public async Task<IActionResult> Edit([Bind] EditUserViewModel viewModel)
+    public async Task<IActionResult> Edit([Bind] UpdateUserCommand command)
     {
-        if (!ModelState.IsValid)
-        {
-            return RedirectToAction(nameof(Profile));
-        }
-        var user = await _userManager.GetUserAsync(User);
-        if (user.Email != viewModel.Email)
-        {
-            user.Email = viewModel.Email;
-            await _userManager.UpdateAsync(user);
-            await _userManager.ChangeEmailAsync(user, viewModel.Email, await _userManager.GenerateEmailConfirmationTokenAsync(user));
-        }
-        if (user.UserName != viewModel.Username)
-        {
-            user.UserName = viewModel.Username;
-            await _userManager.UpdateAsync(user);
-            await _userManager.SetUserNameAsync(user, viewModel.Username);
-        }
-        if (!string.IsNullOrWhiteSpace(viewModel.NickName) & user.NickName != viewModel.NickName)
-        {
-            user.NickName = viewModel.NickName;
-            await _userManager.UpdateAsync(user);
-        }
-        return RedirectToAction(nameof(Profile));
+        return 
+            (await _mediator.Send(command))
+            .Map(user => RedirectToAction(nameof(Profile)))
+            .Reduce(RedirectToAction(controllerName: "Home", actionName: "Index"));
     }
 }

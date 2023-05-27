@@ -33,3 +33,8 @@ a {
 body[data-bs-theme=light] .card-button:hover {
     border-color: var(--bs-secondary-color);
 }
+.text-overflow-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

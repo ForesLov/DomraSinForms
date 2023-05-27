@@ -1,5 +1,6 @@
-﻿@inject IViewLocalizer Localizer
-@model EditUserViewModel
+﻿@using DomraSinForms.Application.Users.Update;
+@inject IViewLocalizer Localizer
+@model UpdateUserCommand
 @{
     var modalId = ViewData["ModalId"] as string ?? $"editUserModal";
 }

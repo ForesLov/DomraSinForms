@@ -1,4 +1,5 @@
 ﻿@using DomraSinForms.Application.Forms.Queries.GetList;
+@using Forms.Mvc.Helpers;
 @using Microsoft.AspNetCore.Mvc.Localization;
 @model FormListDto
 @inject IViewLocalizer Localizer
@@ -7,25 +8,6 @@
     ViewData["Title"] = Localizer["Forms"];
     var searchText = Model.Query.SearchText;
     var order = Model.Query.OrderBy;
-
-    string FormatTextLength(string text, int length = 88)
-    {
-        if (text.Length >= length)
-        {
-            return new string(text.Take(length - 3).ToArray()) + "...";
-        }
-        return text;   
-    }
-
-    var orderApproaches = new[]
-    {
-        new SelectListItem(Localizer["By title"]?.Value, ((int)FormOrderApproach.Title).ToString()),
-        new SelectListItem(Localizer["By title descending"]?.Value, ((int)FormOrderApproach.TitleDescending).ToString()),
-        new SelectListItem(Localizer["By creation date"]?.Value, ((int)FormOrderApproach.Creation).ToString()),
-        new SelectListItem(Localizer["By creation date descending"]?.Value, ((int)FormOrderApproach.CreationDescending).ToString()),
-        new SelectListItem(Localizer["By last edit date"]?.Value, ((int)FormOrderApproach.LastUpdate).ToString()),
-        new SelectListItem(Localizer["By last edit date descending"]?.Value, ((int)FormOrderApproach.LastUpdateDescending).ToString()),
-    };
 
 }
 <div class="row g-3 justify-content-start">
@@ -51,29 +33,7 @@
     <div class="col-12 col-sm-4">
         <form asp-controller="Forms" asp-action="Index" asp-route-order="@order">
             <div class="input-group">
-                <select asp-for="@order" class="form-select">
-                    <option value="@( ((int)FormOrderApproach.Title).ToString() )">
-                        @Localizer["By title"]
-
-
-                    </option>
-                    <option value="@( ((int)FormOrderApproach.TitleDescending).ToString() )">
-                        @Localizer["By title descending"]
-                        <i class="bi-sort-up ms-2"></i>
-                    </option>
-                    <option value="@( ((int)FormOrderApproach.Creation).ToString() )">
-                        @Localizer["By creation date"]
-                    </option>
-                    <option value="@( ((int)FormOrderApproach.CreationDescending).ToString() )">
-                        @Localizer["By creation date descending"]
-                    </option>
-                    <option value="@( ((int)FormOrderApproach.LastUpdate).ToString() )">
-                        @Localizer["By last edit date"]
-                    </option>
-                    <option value="@( ((int)FormOrderApproach.LastUpdateDescending).ToString() )">
-                        @Localizer["By last edit date descending"]
-                    </option>
-                </select>
+                <select class="form-select" asp-for="@order" asp-items="@FormSortHelper.OrderApproaches(Localizer)"></select>
                 <button class="btn btn-outline-secondary input-group-text" id="btnGroupAddon" type="submit"><i class="bi-funnel"></i></button>
             </div>
         </form>
@@ -83,8 +43,8 @@
         <div class="col-12 col-md-6 col-xl-4">
             <div class="card h-100 card-button @(form.IsInArchive ? "text-muted" : "")" asp-action="Edit" asp-route-id="@form.Id" style="height: 15rem;">
                 <a class="card-body text-decoration-none" asp-action="Edit" asp-route-id="@form.Id">
-                    <div class="card-title h5">@FormatTextLength(form.Title, 35)</div>
-                    <div class="card-text mb-2">@FormatTextLength(form.Description)</div>
+                    <div class="card-title h5 flex-nowrap text-overflow-ellipsis">@form.Title</div>
+                    <div class="card-text mb-2 text-overflow-ellipsis">@form.Description</div>
                     <div class="card-text text-muted small align-text-bottom">@Localizer["Last edit"]: @form.FormatLastUpdate(Localizer["Today {0}"]?.Value ?? "") </div>
                 </a>
                 <div class="card-footer">

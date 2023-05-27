@@ -2,7 +2,8 @@
 @using DomraSinForms.ChartsWrapper.ApexCharts.Charts;
 @using DomraSinForms.ChartsWrapper.ApexCharts;
 @using DomraSinForms.Domain.Models.Questions;
-@using Forms.Mvc.Models.Statistics;
+@using Forms.Mvc.Helpers;
+@using Forms.Mvc.ViewModels.Statistics;
 @using Microsoft.AspNetCore.Html;
 @using Microsoft.AspNetCore.Mvc.Localization;
 @using Newtonsoft.Json;
@@ -15,50 +16,12 @@
 @model SummaryViewModel
 @{
     ViewData["Title"] = Localizer["Form answers"]?.Value;
-    Dictionary<object, object> GetCountData(QuestionSummary summary)
-    {
-        var result = new Dictionary<object, object>();
-
-        var allAnswers = summary.Answers.SelectMany(a => a.Split("; ")).ToArray();
-        foreach (var answer in allAnswers.Distinct())
-        {
-            result.Add(answer, allAnswers.Count(a => a == answer));
-        }
-        return result;
-    }
-    Dictionary<object, object> GetPercentageData(QuestionSummary summary)
-    {
-        var result = new Dictionary<object, object>();
-
-        var allAnswers = summary.Answers.SelectMany(a => a.Split("; ")).ToArray();
-        foreach (var answer in allAnswers.Distinct())
-        {
-            result.Add(answer, (double)allAnswers.Count(a => a == answer) / (double)allAnswers.Length * 100d);
-        }
-        return result;
-    }
-    Dictionary<object, object> AnswersActions(IEnumerable<FormAnswersDto> formAnswers)
-    {
-        var dictionary = new Dictionary<string, int>();
-
-        foreach (var answers in formAnswers)
-        {
-            if (!dictionary.TryAdd(answers.CreationDate.ToShortDateString(), 1))
-                dictionary[answers.CreationDate.ToShortDateString()] += 1;
-        }
-
-        var resultDictionary = new Dictionary<object, object>();
-        foreach (var item in dictionary.OrderBy(d => d.Key))
-        {
-            resultDictionary.Add(item.Key, item.Value);
-        };
-        return resultDictionary;
-    }
+    
     var formChartOptions = new ChartOptionsBuilder()
-    .UsePalette(1)
-    .CreateLineChart(AnswersActions(Model.AnswersDto), LineChartDataType.Area)
-    .UseLineStyle(LineStroke.Smooth)
-    .Build().Serialize();
+        .UsePalette(1)
+        .CreateLineChart(ChartHelper.AnswersActions(Model.AnswersDto), LineChartDataType.Area)
+        .UseLineStyle(LineStroke.Smooth)
+        .Build().Serialize();
 }
 <div class="h1 text-center">
     @Localizer["Form answers"]
@@ -102,12 +65,11 @@
     {
         if (question.Question is OptionsQuestion oq)
         {
-            var optionsBuilder = new ChartOptionsBuilder()
-            .UsePalette(1);
+            var optionsBuilder = ChartHelper.GetChartOptionsBuilder();
             if (oq.AllowMultipleChoice)
-                optionsBuilder.CreateBarChart(GetCountData(question));
+                optionsBuilder.CreateBarChart(ChartHelper.GetCountData(question));
             else
-                optionsBuilder.CreatePieChart(GetPercentageData(question));
+                optionsBuilder.CreatePieChart(ChartHelper.GetPercentageData(question));
 
             var chartOptions = optionsBuilder.Build().Serialize();
 

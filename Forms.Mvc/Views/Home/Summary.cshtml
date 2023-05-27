@@ -1,4 +1,5 @@
 ﻿@using DomraSinForms.ChartsWrapper.ApexCharts;
+@using Forms.Mvc.Helpers;
 @using Microsoft.AspNetCore.Identity;
 @using DomraSinForms.ChartsWrapper.ApexCharts.Extensions;
 @using DomraSinForms.ChartsWrapper.ApexCharts.Charts.LineChart;
@@ -9,14 +10,12 @@
 
 @{
     ViewData["Title"] = Localizer["Summary"];
-    var usersFormsActionsOptions = new ChartOptionsBuilder()
-    .UsePalette(1)
+    var usersFormsActionsOptions = ChartHelper.GetChartOptionsBuilder()
     .CreateLineChart(Model.FormsActions)
     .UseLineStyle(LineStroke.Smooth)
     .Build()
     .Serialize();
-    var usersAnswersOptions = new ChartOptionsBuilder()
-    .UsePalette(1)
+    var usersAnswersOptions = ChartHelper.GetChartOptionsBuilder()
     .CreateLineChart(Model.AnswersActions)
     .UseLineStyle(LineStroke.Smooth)
     .Build()
@@ -45,7 +44,7 @@
                 <div class="col-12">
                     <a class="card card-button text-decoration-none" asp-controller="Forms" asp-action="Edit" asp-route-id="@form.Id">
                         <div class="card-body">
-                            <div class="card-title h5">@form.Title</div>
+                            <div class="card-title h5 text-overflow-ellipsis">@form.Title</div>
                             <div class="text-muted small">@form.FormatLastUpdate(Localizer["Today {0}"]?.Value ?? "")</div>
                         </div>
                     </a>
@@ -93,7 +92,7 @@
                 <div class="col-12">
                     <a class="card card-button text-decoration-none" asp-controller="Forms" asp-action="Edit" asp-route-id="@formAnswers.Id">
                         <div class="card-body">
-                            <div class="card-title h5">@formAnswers.Form.Title</div>
+                            <div class="card-title h5 text-overflow-ellipsis">@formAnswers.Form.Title</div>
                             <div class="text-muted small">@formAnswers.FormatCreationDate(Localizer["Today {0}"]?.Value ?? "")</div>
                         </div>
                     </a>
@@ -113,7 +112,7 @@
             console.log()
             chart.render();
         }
-        let formsOptions = JSON.parse('@usersFormsActionsOptions');
+        let formsOptions = JSON.parse('@usersFormsActionsOptions')
         //formsOptions.theme.mode = themeSwitch.isDarkTheme() ? 'dark' : 'light';
         WriteChart('chart-userFormsActions', formsOptions);
         let answersOptions = JSON.parse('@usersAnswersOptions');

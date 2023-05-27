@@ -22,9 +22,25 @@
                                     {
                                         case OptionsQuestion oq:
                                             var answers = answer.Value.Split("; ");
-                                            @foreach (var option in oq.Options)
+                                            @if(oq.AllowMultipleChoice)
                                             {
-                                                <input class="form-control my-2 @(answers.Contains(option.Text) ? "bg-success" : "")" value="@option.Text" disabled />
+                                                @foreach (var option in oq.Options)
+                                                {
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" @(answers.Contains(option.Text) ? "checked" : "") type="checkbox" id="@option.Text" disabled />
+                                                        <label class="form-check-label" for="@option.Text">@option.Text</label>
+                                                    </div>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                @foreach (var option in oq.Options)
+                                                {
+                                                    <div class="form-check">
+                                                        <input class="form-check-input " @(answers.Contains(option.Text) ? "checked" : "") type="radio" id="@option.Text" disabled />
+                                                        <label class="form-check-label" for="@option.Text">@option.Text</label>
+                                                    </div>
+                                                }
                                             }
                                             break;
                                         case TextQuestion tq:
