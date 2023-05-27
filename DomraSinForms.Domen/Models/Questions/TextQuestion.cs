@@ -10,4 +10,5 @@ public enum TextQuestionType
     Date = 2,
     Time = 3,
     DateTime = 4,
+    PhoneNumber = 5,
 }

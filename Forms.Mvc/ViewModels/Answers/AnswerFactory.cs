@@ -42,6 +42,9 @@ public class AnswerFactory : IAnswerViewModelFactory
                         case TextQuestionType.DateTime:
                             yield return new DateTimeAnswer(tq, answer);
                             break;
+                        case TextQuestionType.PhoneNumber:
+                            yield return new PhoneNumberAnswer(tq, answer);
+                            break;
                     }
                     break;
                 default:

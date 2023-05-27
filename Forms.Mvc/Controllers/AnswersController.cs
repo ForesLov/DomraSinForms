@@ -90,6 +90,10 @@ public class AnswersController : Controller
     {
         return await UpdateForm(answer);
     }
+    public async Task<IActionResult> UpdatePhoneNumberAnswer([Bind] PhoneNumberAnswer answer)
+    {
+        return await UpdateForm(answer);
+    }
     public async Task<IActionResult> UpdateCheckAnswer([Bind] CheckAnswer answer)
     {
         return await UpdateForm(answer);

@@ -1,5 +1,6 @@
 ﻿@using DomraSinForms.Application.Questions.Commands.UpdateTextQuestion;
 @using DomraSinForms.Domain.Models.Questions;
+@using Forms.Mvc.Helpers;
 @using Microsoft.AspNetCore.Mvc.Localization;
 @inject IViewLocalizer Localizer
 @model UpdateTextQuestionViewModel
@@ -14,15 +15,6 @@
         Index = Model.Question.Index,
     };
     var modalId = ViewData["ModalId"] as string ?? $"updateModal{Model.Question.Id}";
-
-    var questionTypes = new[]
-    {
-        new SelectListItem(Localizer["Text question"]?.Value, ((int)TextQuestionType.Text).ToString()),
-        new SelectListItem(Localizer["Number question"]?.Value, ((int)TextQuestionType.Number).ToString()),
-        new SelectListItem(Localizer["Date question"]?.Value, ((int)TextQuestionType.Date).ToString()),
-        new SelectListItem(Localizer["DateTime question"]?.Value, ((int)TextQuestionType.DateTime).ToString()),
-        new SelectListItem(Localizer["Time question"]?.Value, ((int)TextQuestionType.Time).ToString()),
-    };
 }
 
 <div class="modal" id="@modalId">
@@ -54,7 +46,7 @@
                     
                     <div class="form-group mb-2">
                         <label class="form-label">@Localizer["Question type"]</label>
-                        <select class="form-select" asp-for="Command.Type" asp-items="@(questionTypes)"></select>
+                        <select class="form-select" asp-for="Command.Type" asp-items="@(QuestionsHelper.TextQuestionTypesSelect(Localizer))"></select>
                     </div>
 
                     <div class="form-group mb-2">

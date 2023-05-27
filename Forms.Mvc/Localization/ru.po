@@ -205,6 +205,9 @@ msgstr "Дата-время"
 msgid "Time question"
 msgstr "Время"
 
+msgid "Phone number"
+msgstr "Номер телефона"
+
 msgid "New optioin"
 msgstr "Новый вариант"
 

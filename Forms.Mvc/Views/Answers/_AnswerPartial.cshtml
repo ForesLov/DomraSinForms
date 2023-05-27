@@ -47,6 +47,11 @@
                     @await Html.PartialAsync("/Views/Answers/AnswerTypes/_DecimalAnswerPartial.cshtml", decimalAnswer, new ViewDataDictionary(ViewData) {{"ModalId", modalId}})
                 }
                 break;
+            case (PhoneNumberAnswer phoneNumberAnswer):
+                {
+                    @await Html.PartialAsync("/Views/Answers/AnswerTypes/_PhoneNumberAnswerPartial.cshtml", phoneNumberAnswer, new ViewDataDictionary(ViewData) {{"ModalId", modalId}})
+                }
+                break;
             case (DateTimeAnswer dateTimeAnswer):
                 {
                     switch (dateTimeAnswer)
