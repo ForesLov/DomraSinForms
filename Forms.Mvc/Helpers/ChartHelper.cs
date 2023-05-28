@@ -12,42 +12,55 @@ public static class ChartHelper
 {
     public static Dictionary<object, object> FormsActions(IEnumerable<Form> forms, IEnumerable<FormVersion> formVersions)
     {
-        var dictionary = new Dictionary<string, int>();
+        var dictionary = new Dictionary<DateTime, int>();
 
         foreach (var form in forms)
         {
-            if (!dictionary.TryAdd(form.CreationDate.ToShortDateString(), 1))
-                dictionary[form.CreationDate.ToShortDateString()] += 1;
+            if (!dictionary.TryAdd(form.CreationDate.Date, 1))
+                dictionary[form.CreationDate.Date] += 1;
         }
         foreach (var version in formVersions)
         {
-            if (!dictionary.TryAdd(version.CreationDate.ToShortDateString(), 1))
-                dictionary[version.CreationDate.ToShortDateString()] += 1;
+            if (!dictionary.TryAdd(version.CreationDate.Date, 1))
+                dictionary[version.CreationDate.Date] += 1;
         }
-
+        var start = dictionary.Min(d => d.Key);
+        var end = DateTime.UtcNow;
+        foreach (var date in Enumerable.Range(0, 1 + end.Subtract(start).Days)
+          .Select(offset => start.AddDays(offset)))
+        {
+            if (!dictionary.ContainsKey(date))
+                dictionary.Add(date, 0);
+        }
         var resultDictionary = new Dictionary<object, object>();
         foreach (var item in dictionary.OrderBy(d => d.Key))
         {
-            resultDictionary.Add(item.Key, item.Value);
+            resultDictionary.Add(item.Key.ToShortDateString(), item.Value);
         }
-
         return resultDictionary;
 
     }
     public static Dictionary<object, object> AnswersActions(IEnumerable<FormAnswers> formAnswers)
     {
-        var dictionary = new Dictionary<string, int>();
+        var dictionary = new Dictionary<DateTime, int>();
 
         foreach (var answers in formAnswers)
         {
-            if (!dictionary.TryAdd(answers.CreationDate.ToShortDateString(), 1))
-                dictionary[answers.CreationDate.ToShortDateString()] += 1;
+            if (!dictionary.TryAdd(answers.CreationDate.Date, 1))
+                dictionary[answers.CreationDate.Date] += 1;
         }
-
+        var start = dictionary.Min(d => d.Key);
+        var end = DateTime.UtcNow;
+        foreach (var date in Enumerable.Range(0, 1 + end.Subtract(start).Days)
+          .Select(offset => start.AddDays(offset)))
+        {
+            if (!dictionary.ContainsKey(date))
+                dictionary.Add(date, 0);
+        }
         var resultDictionary = new Dictionary<object, object>();
         foreach (var item in dictionary.OrderBy(d => d.Key))
         {
-            resultDictionary.Add(item.Key, item.Value);
+            resultDictionary.Add(item.Key.ToShortDateString(), item.Value);
         };
         return resultDictionary;
 
@@ -87,18 +100,25 @@ public static class ChartHelper
     }
     public static Dictionary<object, object> AnswersActions(IEnumerable<FormAnswersDto> formAnswers)
     {
-        var dictionary = new Dictionary<string, int>();
+        var dictionary = new Dictionary<DateTime, int>();
 
         foreach (var answers in formAnswers)
         {
-            if (!dictionary.TryAdd(answers.CreationDate.ToShortDateString(), 1))
-                dictionary[answers.CreationDate.ToShortDateString()] += 1;
+            if (!dictionary.TryAdd(answers.CreationDate.Date, 1))
+                dictionary[answers.CreationDate.Date] += 1;
         }
-
+        var start = dictionary.Min(d => d.Key);
+        var end = DateTime.UtcNow;
+        foreach (var date in Enumerable.Range(0, 1 + end.Subtract(start).Days)
+          .Select(offset => start.AddDays(offset)))
+        {
+            if (!dictionary.ContainsKey(date))
+                dictionary.Add(date, 0);
+        }
         var resultDictionary = new Dictionary<object, object>();
         foreach (var item in dictionary.OrderBy(d => d.Key))
         {
-            resultDictionary.Add(item.Key, item.Value);
+            resultDictionary.Add(item.Key.ToShortDateString(), item.Value);
         };
         return resultDictionary;
     }
