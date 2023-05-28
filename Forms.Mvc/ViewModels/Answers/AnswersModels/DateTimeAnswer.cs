@@ -12,10 +12,10 @@ public class DateTimeAnswer : AnswerViewModel
     {
 
     }
-    public DateTime DateTimeValue { get; set; }
+    public DateTime? DateTimeValue { get; set; }
     public override string Value
     {
-        get => DateTimeValue.ToString();
+        get => DateTimeValue.HasValue ? DateTimeValue.Value.ToString() : "";
         set
         {
             if (DateTime.TryParse(value, out _))

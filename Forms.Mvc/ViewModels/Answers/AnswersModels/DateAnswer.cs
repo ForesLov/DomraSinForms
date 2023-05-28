@@ -14,7 +14,7 @@ public class DateAnswer : DateTimeAnswer
     }
     public override string Value
     {
-        get => DateTimeValue.ToShortDateString();
+        get => DateTimeValue.HasValue ? DateTimeValue.Value.ToShortDateString() : "";
         set
         {
             if (DateTime.TryParse(value, out _))
