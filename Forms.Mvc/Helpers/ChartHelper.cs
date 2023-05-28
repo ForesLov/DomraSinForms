@@ -24,16 +24,9 @@ public static class ChartHelper
             if (!dictionary.TryAdd(version.CreationDate.Date, 1))
                 dictionary[version.CreationDate.Date] += 1;
         }
-        var start = dictionary.Min(d => d.Key);
-        var end = DateTime.UtcNow;
-        foreach (var date in Enumerable.Range(0, 1 + end.Subtract(start).Days)
-          .Select(offset => start.AddDays(offset)))
-        {
-            if (!dictionary.ContainsKey(date))
-                dictionary.Add(date, 0);
-        }
+
         var resultDictionary = new Dictionary<object, object>();
-        foreach (var item in dictionary.OrderBy(d => d.Key))
+        foreach (var item in dictionary.AddMissingDates().OrderBy(d => d.Key))
         {
             resultDictionary.Add(item.Key.ToShortDateString(), item.Value);
         }
@@ -49,16 +42,8 @@ public static class ChartHelper
             if (!dictionary.TryAdd(answers.CreationDate.Date, 1))
                 dictionary[answers.CreationDate.Date] += 1;
         }
-        var start = dictionary.Min(d => d.Key);
-        var end = DateTime.UtcNow;
-        foreach (var date in Enumerable.Range(0, 1 + end.Subtract(start).Days)
-          .Select(offset => start.AddDays(offset)))
-        {
-            if (!dictionary.ContainsKey(date))
-                dictionary.Add(date, 0);
-        }
         var resultDictionary = new Dictionary<object, object>();
-        foreach (var item in dictionary.OrderBy(d => d.Key))
+        foreach (var item in dictionary.AddMissingDates().OrderBy(d => d.Key))
         {
             resultDictionary.Add(item.Key.ToShortDateString(), item.Value);
         };
@@ -107,19 +92,25 @@ public static class ChartHelper
             if (!dictionary.TryAdd(answers.CreationDate.Date, 1))
                 dictionary[answers.CreationDate.Date] += 1;
         }
-        var start = dictionary.Min(d => d.Key);
-        var end = DateTime.UtcNow;
-        foreach (var date in Enumerable.Range(0, 1 + end.Subtract(start).Days)
-          .Select(offset => start.AddDays(offset)))
-        {
-            if (!dictionary.ContainsKey(date))
-                dictionary.Add(date, 0);
-        }
         var resultDictionary = new Dictionary<object, object>();
-        foreach (var item in dictionary.OrderBy(d => d.Key))
+        foreach (var item in dictionary.AddMissingDates().OrderBy(d => d.Key))
         {
             resultDictionary.Add(item.Key.ToShortDateString(), item.Value);
         };
+        return resultDictionary;
+    }
+    public static Dictionary<DateTime, int> AddMissingDates(this Dictionary<DateTime, int> dictionary)
+    {
+        var resultDictionary = new Dictionary<DateTime, int>(dictionary);
+        var start = resultDictionary.Count == 0 ? DateTime.UtcNow.Date : resultDictionary.Min(d => d.Key);
+        var end = DateTime.UtcNow;
+
+        foreach (var date in Enumerable.Range(0, 1 + end.Subtract(start).Days)
+          .Select(offset => start.AddDays(offset)))
+        {
+            if (!resultDictionary.ContainsKey(date))
+                resultDictionary.Add(date, 0);
+        }
         return resultDictionary;
     }
 }
