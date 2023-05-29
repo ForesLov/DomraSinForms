@@ -358,3 +358,31 @@ msgstr "Поле Название должно быть заполнено."
 
 msgid "The Description field is required."
 msgstr "Поле Описание должно быть заполнено."
+
+#
+# Update
+#
+
+msgid "Copied"
+msgstr "Скопированно"
+
+msgid "The Email field is required."
+msgstr "Поле Email должно быть заполнено."
+
+msgid "The Password field is required."
+msgstr "Поле Пароль должно быть заполнено."
+
+msgid "The Email field is not a valid e-mail address."
+msgstr "Поле Email не соответствует адресу электронной почты."
+
+msgid "The UserName field is required."
+msgstr "Поле Имя пользователя должно быть заполнено"
+
+msgid "The password and confirmation password do not match."
+msgstr "Пароль не совпадает с подтверждением."
+
+msgid "The Password must be at least 6 and at max 100 characters long."
+msgstr "Пароль должен состоять не менее чем из 6-ти символов."
+
+msgid "Allready has an account? Log in"
+msgstr "Уже есть аккаунт? Войти"
