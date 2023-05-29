@@ -60,7 +60,7 @@
                     @Localizer["Your actions summary"]:
                 </div>
             </div>
-            <div class="card-img" id="chart-userFormsActions"></div>
+            <div class="card-img-bottom" id="chart-userFormsActions"></div>
             
         </div>
     </div>
@@ -109,14 +109,16 @@
         function WriteChart(elementId, chartOptions) {
             console.log('chart');
             let chart = new ApexCharts(document.querySelector(`#${elementId}`), chartOptions);
-            console.log()
             chart.render();
         }
         let formsOptions = JSON.parse('@usersFormsActionsOptions')
-        //formsOptions.theme.mode = themeSwitch.isDarkTheme() ? 'dark' : 'light';
+        formsOptions.theme.mode = themeSwitch.isDarkTheme() ? 'dark' : 'light';
         WriteChart('chart-userFormsActions', formsOptions);
         let answersOptions = JSON.parse('@usersAnswersOptions');
-        //answersOptions.theme.mode = themeSwitch.isDarkTheme() ? 'dark' : 'light';
+        answersOptions.theme.mode = themeSwitch.isDarkTheme() ? 'dark' : 'light';
         WriteChart('chart-userAnswers', answersOptions);
     </script>
 }
+<style>
+    
+</style>

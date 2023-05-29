@@ -38,3 +38,10 @@ body[data-bs-theme=light] .card-button:hover {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+svg {
+    background: none !important;
+}
+body[data-bs-theme=dark] .apexcharts-text/*, text */{
+    fill: var(--bs-secondary-text-emphasis) !important;
+    font-family: var(--bs-font-sans-serif) !important;
+}

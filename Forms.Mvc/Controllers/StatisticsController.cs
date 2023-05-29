@@ -29,7 +29,7 @@ namespace Forms.Mvc.Controllers
                 FormId = formId,
                 AnswersDto = await _mediator.Send(new GetFormAnswersListQuery { FormId = formId }),
             };
-            if (vm is null)
+            if (vm.AnswersDto is null)
                 return NotFound();
             return View(vm);
         }
@@ -46,7 +46,7 @@ namespace Forms.Mvc.Controllers
                 FormId = formId,
                 FormAnswersList = await _mediator.Send(new GetFormAnswersListQuery { FormId = formId })
             };
-            if (vm is null)
+            if (vm.FormAnswersList is null)
                 return NotFound();
             return View(vm);
         }
