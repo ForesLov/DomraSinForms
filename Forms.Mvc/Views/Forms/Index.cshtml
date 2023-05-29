@@ -58,15 +58,21 @@
                             </a>
                         </div>
                         <div class="col">
+                            <div data-bs-toggle="tooltip" data-bs-title="@Localizer["Share"]">
+
                             <a class="btn btn-lg btn-outline-info form-control" data-bs-toggle="modal" data-bs-target="#share@(form.Id)">
-                                <i class="bi-share me-2" data-bs-toggle="tooltip" data-bs-title="@Localizer["Share"]"></i>
+                                <i class="bi-share me-2" ></i>
                             </a>
+                            </div>
                             @await Html.PartialAsync("_ShareModalPartial", form.Id, new ViewDataDictionary(ViewData){{"ModalId", $"share{form.Id}"}})
                         </div>
                         <div class="col">
+                            <div data-bs-toggle ="tooltip" data-bs-title="@Localizer["Delete"]">
+
                             <a class="btn btn-lg btn-outline-danger form-control" data-bs-toggle="modal" data-bs-target="#delete@(form.Id)">
-                                <i class="bi-trash3 me-2" data-bs-toggle="tooltip" data-bs-title="@Localizer["Delete"]"></i>
+                                <i class="bi-trash3 me-2" ></i>
                             </a>
+                            </div>
                             @await Html.PartialAsync("_DeleteModalPartial", form, new ViewDataDictionary(ViewData){{"ModalId", $"delete{form.Id}"}})
                         </div>
                     </div>
