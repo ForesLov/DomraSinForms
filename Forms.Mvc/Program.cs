@@ -1,6 +1,7 @@
 using DomraSinForms.Application;
 using DomraSinForms.Domain.Identity;
 using DomraSinForms.Persistence;
+using Forms.Mvc.Localization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,7 +29,7 @@ builder.Services
     .AddViewLocalization();
 
 builder.Services
-    .AddLocalization(options => options.ResourcesPath = "Resources")
+    .AddLocalization()
     .AddDataAnnotationsPortableObjectLocalization()
     .AddApplication()
     .AddPortableObjectLocalization(options => options.ResourcesPath = "Localization");
@@ -68,7 +69,7 @@ app.Run();
 
 void ConfigLocalization(WebApplication application)
 {
-    var supportedCultures = new[] { "en", "ru" };
+    var supportedCultures = Localization.SupportedLanguages.Select(i => i.Key).ToArray();
     var options = new RequestLocalizationOptions()
         .AddSupportedCultures(supportedCultures)
         .AddSupportedUICultures(supportedCultures)
