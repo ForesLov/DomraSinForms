@@ -112,10 +112,10 @@
             chart.render();
         }
         let formsOptions = JSON.parse('@usersFormsActionsOptions')
-        formsOptions.theme.mode = themeSwitch.isDarkTheme() ? 'dark' : 'light';
+        //formsOptions.theme.mode = themeSwitch.isDarkTheme() ? 'dark' : 'light';
         WriteChart('chart-userFormsActions', formsOptions);
         let answersOptions = JSON.parse('@usersAnswersOptions');
-        answersOptions.theme.mode = themeSwitch.isDarkTheme() ? 'dark' : 'light';
+        //answersOptions.theme.mode = themeSwitch.isDarkTheme() ? 'dark' : 'light';
         WriteChart('chart-userAnswers', answersOptions);
     </script>
 }

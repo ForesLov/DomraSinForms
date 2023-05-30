@@ -381,8 +381,8 @@ msgstr "Поле Имя пользователя должно быть запо�
 msgid "The password and confirmation password do not match."
 msgstr "Пароль не совпадает с подтверждением."
 
-msgid "The Password must be at least 6 and at max 100 characters long."
-msgstr "Пароль должен состоять не менее чем из 6-ти символов."
+msgid "The Password must be at least {0} and at max {1} characters long."
+msgstr "Пароль должен состоять не менее чем из {0}-ти символов."
 
 msgid "Allready has an account? Log in"
 msgstr "Уже есть аккаунт? Войти"
