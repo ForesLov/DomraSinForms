@@ -17,6 +17,7 @@
 
                 <form asp-controller="User" asp-action="Edit" method="post">
 
+                    <input asp-for="Id" hidden/>
                     <div class="form-group mb-2">
                         <label class="form-label">
                             @Localizer["Username"]

@@ -14,7 +14,7 @@
         @foreach (var form in Model.Forms)
         {
             <div class="col-12">
-                <a class="card card-button text-decoration-none" asp-controller="Statistics" asp-action="Summary" asp-route-formId="@form.Id">
+                <a class="card card-button text-decoration-none" asp-controller="Statistics" asp-action="FormAnswersList" asp-route-formId="@form.Id">
                     <div class="card-body">
                         <div class="card-title h5">@form.Title</div>
                         <div>@form.Description</div>

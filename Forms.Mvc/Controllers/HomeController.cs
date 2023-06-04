@@ -24,8 +24,8 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        if (_signInManager.IsSignedIn(User))
-            return RedirectToAction(nameof(Summary));
+        /*if (_signInManager.IsSignedIn(User))
+            return RedirectToAction(nameof(Summary));*/
 
         return View();
     }

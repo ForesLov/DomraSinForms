@@ -41,12 +41,12 @@
     }
     else
     {
-        <li class="list-group-item @GetClass(Localizer["Form answers"]?.Value ?? "") @GetClass(Localizer["All answers"]?.Value ?? "")">
+        <li class="list-group-item">
             <a class="nav-link"
                aria-current="true"
                asp-controller="Statistics"
                asp-route-formId="@Model"
-               asp-action="Summary">
+               asp-action="FormAnswersList">
                 <i class="bi-card-checklist me-3"></i>@Localizer["Show answers"]
             </a>
         </li>
