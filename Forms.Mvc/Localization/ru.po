@@ -386,3 +386,6 @@ msgstr "Пароль должен состоять не менее чем из {
 
 msgid "Allready has an account? Log in"
 msgstr "Уже есть аккаунт? Войти"
+
+msgid "This question is required"
+msgstr "Это обязательный вопрос"
