@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using DomraSinForms.Domain.Identity;
 using DomraSinForms.Domain.Models.Answers;
 using DomraSinForms.Domain.Models.Questions;
 using DomraSinForms.Domain.Models.Versions;
@@ -16,4 +17,5 @@ public class Form : DbEntity
     public List<FormAnswers> FormAnswers { get; set; } = new();
     public FormVersion? Version { get; set; }
     public bool IsInArchive { get; set; }
+    public ICollection<User> AllowedUsers { get; set; }
 }

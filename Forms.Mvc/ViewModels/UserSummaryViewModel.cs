@@ -8,7 +8,7 @@ namespace Forms.Mvc.ViewModels;
 
 public class UserSummaryViewModel
 {
-    public UserSummaryViewModel() {}
+    public UserSummaryViewModel() : this(new()) {}
     public UserSummaryViewModel(UsersActionsSummary summary)
     {
         FormVersions = summary.FormVersions;

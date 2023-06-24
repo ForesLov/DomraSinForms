@@ -41,6 +41,9 @@ namespace DomraSinForms.Persistence.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("FormId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -78,6 +81,8 @@ namespace DomraSinForms.Persistence.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("FormId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -182,6 +187,7 @@ namespace DomraSinForms.Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FormId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Index")
@@ -191,6 +197,7 @@ namespace DomraSinForms.Persistence.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("QuestionText")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -402,6 +409,13 @@ namespace DomraSinForms.Persistence.Migrations
                     b.HasDiscriminator().HasValue("TextQuestion");
                 });
 
+            modelBuilder.Entity("DomraSinForms.Domain.Identity.User", b =>
+                {
+                    b.HasOne("DomraSinForms.Domain.Models.Form", null)
+                        .WithMany("AllowedUsers")
+                        .HasForeignKey("FormId");
+                });
+
             modelBuilder.Entity("DomraSinForms.Domain.Models.Answers.Answer", b =>
                 {
                     b.HasOne("DomraSinForms.Domain.Models.Answers.FormAnswers", null)
@@ -441,7 +455,8 @@ namespace DomraSinForms.Persistence.Migrations
                     b.HasOne("DomraSinForms.Domain.Models.Form", null)
                         .WithMany("Questions")
                         .HasForeignKey("FormId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("DomraSinForms.Domain.Models.Questions.QuestionOption", b =>
@@ -523,6 +538,8 @@ namespace DomraSinForms.Persistence.Migrations
 
             modelBuilder.Entity("DomraSinForms.Domain.Models.Form", b =>
                 {
+                    b.Navigation("AllowedUsers");
+
                     b.Navigation("FormAnswers");
 
                     b.Navigation("Questions");

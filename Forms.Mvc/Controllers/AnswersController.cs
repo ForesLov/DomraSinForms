@@ -1,11 +1,15 @@
 ﻿using System.Security.Cryptography.Xml;
+using DomraSinForms.Application;
 using DomraSinForms.Application.Answers.Commands.Create;
 using DomraSinForms.Application.Answers.Commands.Update;
 using DomraSinForms.Application.Answers.Queries.GetEmptyForm;
+using DomraSinForms.Application.Answers.Queries.GetList;
 using DomraSinForms.Domain.Models;
 using DomraSinForms.Application.Forms.Queries.Get;
 using DomraSinForms.Application.Forms.Queries.GetList;
+using DomraSinForms.Application.Forms.Queries.GetMin;
 using DomraSinForms.Domain.Identity;
+using Forms.Mvc.Helpers;
 using Forms.Mvc.ViewModels.Answers;
 using Forms.Mvc.ViewModels.Answers.AnswersModels;
 using MediatR;
@@ -60,20 +64,16 @@ public class AnswersController : Controller
     [Authorize]
     public async Task<IActionResult> Fill(string id)
     {
-        var form = await _mediator.Send(new GetFormQuery { Id = id });
+        var form = await _mediator.Send(new GetMinFormQuery { Id = id });
+        var userId = _userManager.GetRequiredUserId(User);
 
-        var userId = _userManager.GetUserId(User);
+        //if (form is null || userId is null || form.IsInArchive)
+          //  return RedirectToAction(controllerName: "Home", actionName: "Index");
 
-        if (form is null || userId is null || form.IsInArchive)
-            return RedirectToAction(controllerName: "Home", actionName: "Index");
-
-        var command = await _mediator.Send(new GetEmptyFormQuery { FormId = id, UserId = userId });
-
-        if (command is null)
-            return RedirectToAction(controllerName: "Home", actionName: "Index");
-
-        var cvm = new FillFormViewModel(command, form);
-        return View(cvm);
+          return Option<FormAnswersDto>
+              .Some(await _mediator.Send(new GetEmptyFormQuery { FormId = id, UserId = userId }))
+              .Map<IActionResult>(any => View(new FillFormViewModel(any, form.Reduce(null))))
+              .Reduce(RedirectToAction(controllerName: "Home", actionName: "Index"));
     }
     public async Task<IActionResult> UpdateStringAnswer([Bind] StringAnswer answer)
     {

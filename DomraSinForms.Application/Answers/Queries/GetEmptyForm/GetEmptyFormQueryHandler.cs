@@ -33,6 +33,7 @@ public class GetEmptyFormQueryHandler : IRequestHandler<GetEmptyFormQuery, FormA
     {
         var form = await _context.Forms
             .Include(f => f.Questions)
+            .Where(form => !form.IsInArchive)
             .FirstOrDefaultAsync(f => f.Id == formId, cancellationToken);
 
 
@@ -69,6 +70,7 @@ public class GetEmptyFormQueryHandler : IRequestHandler<GetEmptyFormQuery, FormA
     private async Task<FormAnswersDto?> UpdateCommand(FormAnswers currentFormAnswers, CancellationToken cancellationToken = default)
     {
         var form = await _context.Forms
+            .Where(form => !form.IsInArchive)
             .FirstOrDefaultAsync(f => f.Id == currentFormAnswers.FormId, cancellationToken);
 
         if (form is null)

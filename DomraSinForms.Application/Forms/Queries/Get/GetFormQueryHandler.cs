@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DomraSinForms.Application.Forms.Queries.Get;
 
-public class GetFormQueryHandler : IRequestHandler<GetFormQuery, Form?>
+public class GetFormQueryHandler : IRequestHandler<GetFormQuery, Option<Form>>
 {
     private readonly ApplicationDbContext _context;
     private readonly IMediator _mediator;
@@ -17,18 +17,18 @@ public class GetFormQueryHandler : IRequestHandler<GetFormQuery, Form?>
         _context = context;
         _mediator = mediator;
     }
-    public async Task<Form?> Handle(GetFormQuery request, CancellationToken cancellationToken)
+    public async Task<Option<Form>> Handle(GetFormQuery request, CancellationToken cancellationToken)
     {
         var form = await _context.Forms
-            .AsNoTracking()
-            /*  .Where(f => f.CreatorId == request.UserId)*/
-            .FirstOrDefaultAsync(f => f.Id == request.Id, cancellationToken);
+            .Where(form => form.CreatorId == request.UserId 
+                        || form.AllowedUsers.Any(user => user.Id == request.UserId))
+            .FirstOrDefaultAsync(form => form.Id == request.Id, cancellationToken);
 
         if (form is null)
-            return null;
+            return Option<Form>.None();
 
         form.Questions = new List<QuestionBase>(await _mediator.Send(new GetQuestionListQuery { FormId = form.Id, }));
 
-        return form;
+        return Option<Form>.Some(form);
     }
 }

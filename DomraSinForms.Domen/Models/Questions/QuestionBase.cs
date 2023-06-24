@@ -2,13 +2,12 @@
 
 namespace DomraSinForms.Domain.Models.Questions;
 
-#nullable disable
-
 public abstract class QuestionBase : DbEntity
 {
-    public string QuestionText { get; set; }
+    public string QuestionText { get; set; } = string.Empty;
     public int Index { get; set; }
-    public string FormId { get; set; }
+    public string FormId { get; set; } = string.Empty;
     public bool IsRequired { get; set; }
     public ICollection<Answer> Answers { get; set; }
+    //public ICollection<RightAnswer>? RightAnswers { get; set; }
 }

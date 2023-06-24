@@ -1,9 +1,12 @@
-﻿using DomraSinForms.Application.Forms.Commands.Create;
+﻿using System.Runtime.InteropServices.JavaScript;
+using DomraSinForms.Application;
+using DomraSinForms.Application.Forms.Commands.Create;
 using DomraSinForms.Application.Forms.Commands.Delete;
 using DomraSinForms.Application.Forms.Commands.Update;
 using DomraSinForms.Application.Forms.Queries.Get;
 using DomraSinForms.Application.Forms.Queries.GetList;
 using DomraSinForms.Domain.Identity;
+using Forms.Mvc.Helpers;
 using Forms.Mvc.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -25,9 +28,7 @@ public class FormsController : Controller
     [Authorize]
     public async Task<IActionResult> Index(int page = 0, int count = 10, string searchText = "", FormOrderApproach order = FormOrderApproach.LastUpdateDescending)
     {
-        var userId = _signInManager.UserManager.GetUserId(User);
-        if (userId is null)
-            return RedirectToIndex();
+        var userId = _signInManager.UserManager.GetRequiredUserId(User);
 
         var forms = await _mediator.Send(
             new GetFormListQuery
@@ -45,9 +46,7 @@ public class FormsController : Controller
     [Authorize]
     public IActionResult Create()
     {
-        var userId = _signInManager.UserManager.GetUserId(User);
-        if (userId is null)
-            return RedirectToIndex();
+        var userId = _signInManager.UserManager.GetRequiredUserId<User>(User);
 
         var command = new CreateFormCommand { CreatorId = userId };
 
@@ -67,17 +66,13 @@ public class FormsController : Controller
     [Authorize]
     public async Task<IActionResult> Edit(string id)
     {
-        var userId = _signInManager.UserManager.GetUserId(User);
-        if (userId is null)
-            return RedirectToIndex();
+        var userId = _signInManager.UserManager.GetRequiredUserId(User);
 
-        var form = await _mediator.Send(new GetFormQuery { Id = id });
-
-        if (form is null)
-            return RedirectToIndex();
-
-        return View(
-            new EditFormViewModel { Form = form });
+        var form = await _mediator.Send(new GetFormQuery(id, userId));
+        
+        return form
+            .Map<IActionResult>(any => View(new EditFormViewModel { Form = any }))
+            .Reduce(RedirectToIndex());
     }
     [HttpPost, Authorize]
     public async Task<IActionResult> Edit([Bind] UpdateFormCommand command)
@@ -90,16 +85,15 @@ public class FormsController : Controller
     [HttpPost, Authorize]
     public async Task<IActionResult> Delete(string id)
     {
-        var userId = _signInManager.UserManager.GetUserId(User);
-        if (userId is null)
-            return RedirectToIndex();
+        var userId = _signInManager.UserManager.GetRequiredUserId(User);
 
         var command = new DeleteFormCommand { Id = id, UserId = userId };
         await _mediator.Send(command);
 
         return RedirectToIndex();
     }
-    protected IActionResult RedirectToIndex()
+
+    private IActionResult RedirectToIndex()
     {
         return RedirectToAction(nameof(Index));
     }

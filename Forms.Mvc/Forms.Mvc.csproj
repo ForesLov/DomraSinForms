@@ -24,7 +24,7 @@
     <TypeScriptCompile Remove="wwwroot\ts\**" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Localization\**" >
+    <Content Include="Localization\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

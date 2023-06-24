@@ -10,16 +10,19 @@ namespace Forms.Mvc.Helpers;
 
 public static class ChartHelper
 {
+    private const int DaysForStatistics = 30;
     public static Dictionary<object, object> FormsActions(IEnumerable<Form> forms, IEnumerable<FormVersion> formVersions)
     {
         var dictionary = new Dictionary<DateTime, int>();
 
-        foreach (var form in forms)
+        foreach (var form in forms
+                     .Where(form => form.CreationDate >= DateTime.Now - TimeSpan.FromDays(DaysForStatistics)))
         {
             if (!dictionary.TryAdd(form.CreationDate.Date, 1))
                 dictionary[form.CreationDate.Date] += 1;
         }
-        foreach (var version in formVersions)
+        foreach (var version in formVersions
+                     .Where(version => version.CreationDate >= DateTime.Now - TimeSpan.FromDays(DaysForStatistics)))
         {
             if (!dictionary.TryAdd(version.CreationDate.Date, 1))
                 dictionary[version.CreationDate.Date] += 1;
@@ -37,7 +40,8 @@ public static class ChartHelper
     {
         var dictionary = new Dictionary<DateTime, int>();
 
-        foreach (var answers in formAnswers)
+        foreach (var answers in formAnswers
+                     .Where(version => version.CreationDate >= DateTime.Now - TimeSpan.FromDays(DaysForStatistics)))
         {
             if (!dictionary.TryAdd(answers.CreationDate.Date, 1))
                 dictionary[answers.CreationDate.Date] += 1;
