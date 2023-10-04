@@ -1,9 +1,10 @@
-﻿using DomraSinForms.Application.Forms.Notifications.Update;
+﻿using DomraSinForms.Application.Features.Forms.Notifications.Update;
 using DomraSinForms.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace DomraSinForms.Application.Features.Questions.Notifications;
+
 public class QuestionsUpdateNotificationHandler : INotificationHandler<QuestionsUpdateNotification>
 {
     private readonly ApplicationDbContext _context;
@@ -14,6 +15,7 @@ public class QuestionsUpdateNotificationHandler : INotificationHandler<Questions
         _context = context;
         _mediator = mediator;
     }
+
     public async Task Handle(QuestionsUpdateNotification notification, CancellationToken cancellationToken)
     {
         var form = await _context.Forms

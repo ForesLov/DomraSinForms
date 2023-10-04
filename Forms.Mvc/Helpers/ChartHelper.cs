@@ -1,5 +1,4 @@
 ﻿using DomraSinForms.Application.Features.Answers.Queries.GetList;
-using DomraSinForms.Application.Forms.Queries.GetList;
 using DomraSinForms.ChartsWrapper.ApexCharts;
 using DomraSinForms.Domain.Models;
 using DomraSinForms.Domain.Models.Answers;

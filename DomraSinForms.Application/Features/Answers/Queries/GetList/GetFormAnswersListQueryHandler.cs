@@ -1,12 +1,13 @@
 ﻿using System.Runtime.CompilerServices;
 using AutoMapper;
-using DomraSinForms.Application.Answers.Queries.Get;
+using DomraSinForms.Application.Features.Answers.Queries.Get;
 using DomraSinForms.Domain.Models.Answers;
 using DomraSinForms.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace DomraSinForms.Application.Features.Answers.Queries.GetList;
+
 public class GetFormAnswersListQueryHandler : IRequestHandler<GetFormAnswersListQuery, IEnumerable<FormAnswersDto>>
 {
     private readonly ApplicationDbContext _context;
@@ -19,13 +20,13 @@ public class GetFormAnswersListQueryHandler : IRequestHandler<GetFormAnswersList
         _mapper = mapper;
         _mediator = mediator;
     }
+
     public async Task<IEnumerable<FormAnswersDto>> Handle(GetFormAnswersListQuery request, CancellationToken cancellationToken)
     {
         var formAnswersIds = await _context.FormAnswers
             .Where(fa => fa.FormId == request.FormId && fa.IsCompleted)
             .Select(fa => fa.Id)
             .ToArrayAsync(cancellationToken);
-
 
         var result = new List<FormAnswersDto>(formAnswersIds.Length);
         await foreach (var fa in Handle(formAnswersIds, cancellationToken))

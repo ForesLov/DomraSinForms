@@ -1,7 +1,5 @@
-using System.Net;
 using DomraSinForms.Domain.Identity;
 using DomraSinForms.Persistence;
-using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +16,7 @@ public class GetPersonalInfoHandler : IRequestHandler<GetPersonalInfo, Option<Pe
         _userManager = userManager;
         _context = context;
     }
+
     public async Task<Option<PersonalInfo>> Handle(GetPersonalInfo request, CancellationToken cancellationToken)
     {
         var user = await _context.Users.FirstOrDefaultAsync(user => user.Id == request.UserId, cancellationToken);

@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics;
-using DomraSinForms.Application.Users.Queries;
+using DomraSinForms.Application.Features.Users.Queries.GetUserActionsSummary;
 using DomraSinForms.Domain.Identity;
 using Forms.Mvc.ViewModels;
 using MediatR;

@@ -2,6 +2,7 @@
 using MediatR;
 
 namespace DomraSinForms.Application.Features.Questions.Commands;
+
 public class UpdateQuestionBaseCommand
 {
     public string Id { get; set; } = string.Empty;
@@ -9,7 +10,7 @@ public class UpdateQuestionBaseCommand
     public bool IsRequired { get; set; }
     public int Index { get; set; }
 }
+
 public class UpdateQuestionBaseCommand<TQuestion> : UpdateQuestionBaseCommand, IRequest<TQuestion> where TQuestion : QuestionBase
 {
-
 }

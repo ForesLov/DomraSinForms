@@ -15,6 +15,7 @@ namespace DomraSinForms.Application.Features.Forms.Queries.GetList
             _context = context;
             _mapper = mapper;
         }
+
         public async Task<FormListDto> Handle(GetFormListQuery request, CancellationToken cancellationToken)
         {
             var result = new FormListDto

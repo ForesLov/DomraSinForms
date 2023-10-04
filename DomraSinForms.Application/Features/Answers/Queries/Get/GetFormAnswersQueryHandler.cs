@@ -1,4 +1,4 @@
-﻿using DomraSinForms.Application.Questions.Queries.GetList;
+﻿using DomraSinForms.Application.Features.Questions.Queries.GetList;
 using DomraSinForms.Domain.Models.Answers;
 using DomraSinForms.Persistence;
 using MediatR;

@@ -4,6 +4,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace DomraSinForms.Application.Features.Forms.Notifications.Update;
+
 public class UpdateFormNotificationHandler : INotificationHandler<UpdateFormNotification>
 {
     private readonly ApplicationDbContext _context;
@@ -12,6 +13,7 @@ public class UpdateFormNotificationHandler : INotificationHandler<UpdateFormNoti
     {
         _context = context;
     }
+
     public async Task Handle(UpdateFormNotification notification, CancellationToken cancellationToken)
     {
         var uncompletedAnswers = await _context.FormAnswers.Where(fa => fa.FormId == notification.FormId && !fa.IsCompleted).ToArrayAsync();
@@ -23,7 +25,6 @@ public class UpdateFormNotificationHandler : INotificationHandler<UpdateFormNoti
 
         form.Version = new FormVersion { FormId = form.Id, CreationDate = DateTime.UtcNow, Index = form.Version?.Index + 1 ?? 1 };
         _context.Update(form);
-
 
         await _context.SaveChangesAsync(cancellationToken);
     }

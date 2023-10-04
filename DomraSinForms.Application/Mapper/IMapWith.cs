@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 
 namespace DomraSinForms.Application.Mapper;
+
 public interface IMapWith<T>
 {
     void Mapping(Profile profile) =>

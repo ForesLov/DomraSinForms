@@ -1,9 +1,9 @@
-﻿using DomraSinForms.Application.Questions.Notifications;
-using DomraSinForms.Persistence;
+﻿using DomraSinForms.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace DomraSinForms.Application.Features.Questions.Commands.Delete;
+
 public class DeleteQuestionCommandHandler : IRequestHandler<DeleteQuestionCommand, bool>
 {
     private readonly ApplicationDbContext _context;
@@ -14,6 +14,7 @@ public class DeleteQuestionCommandHandler : IRequestHandler<DeleteQuestionComman
         _context = context;
         _mediator = mediator;
     }
+
     public async Task<bool> Handle(DeleteQuestionCommand request, CancellationToken cancellationToken)
     {
         var question = await _context.Questions.FindAsync(request.Id, cancellationToken);

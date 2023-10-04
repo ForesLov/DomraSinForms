@@ -2,6 +2,7 @@
 using MediatR;
 
 namespace DomraSinForms.Application.Features.Answers.Queries.GetQuestionAnswers;
+
 public class GetQuestionAnswersQuery : IRequest<IEnumerable<Answer>>
 {
     /// <summary>

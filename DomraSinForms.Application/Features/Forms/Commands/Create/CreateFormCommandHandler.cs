@@ -5,6 +5,7 @@ using DomraSinForms.Persistence;
 using MediatR;
 
 namespace DomraSinForms.Application.Features.Forms.Commands.Create;
+
 public class CreateFormCommandHandler : IRequestHandler<CreateFormCommand, Form>
 {
     private readonly ApplicationDbContext _context;
@@ -15,6 +16,7 @@ public class CreateFormCommandHandler : IRequestHandler<CreateFormCommand, Form>
         _context = context;
         _mapper = mapper;
     }
+
     public async Task<Form> Handle(CreateFormCommand request, CancellationToken cancellationToken)
     {
         var form = _mapper.Map<Form>(request);

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomraSinForms.Domain.Models;
+﻿using DomraSinForms.Domain.Models;
 using DomraSinForms.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace DomraSinForms.Application.Features.Forms.Commands.Archive;
+
 public class ArchiveFormCommandHandler : IRequestHandler<ArchiveFormCommand, Form?>
 {
     private readonly ApplicationDbContext _context;
@@ -17,6 +13,7 @@ public class ArchiveFormCommandHandler : IRequestHandler<ArchiveFormCommand, For
     {
         _context = context;
     }
+
     public async Task<Form?> Handle(ArchiveFormCommand request, CancellationToken cancellationToken)
     {
         var form = await _context.Forms.FirstOrDefaultAsync(f => f.Id == request.Id, cancellationToken);

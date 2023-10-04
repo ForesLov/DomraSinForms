@@ -2,6 +2,7 @@
 using DomraSinForms.Domain.Models.Questions;
 
 namespace DomraSinForms.Application.Features.Questions.Queries.Get;
+
 public class GetQuestionQuery : IGetSingleRequest<QuestionBase?>
 {
     public string Id { get; set; } = string.Empty;

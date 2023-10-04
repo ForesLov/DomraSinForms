@@ -12,6 +12,7 @@ public class DeleteFormCommandHandler : IRequestHandler<DeleteFormCommand, bool>
     {
         _context = context;
     }
+
     public async Task<bool> Handle(DeleteFormCommand request, CancellationToken cancellationToken)
     {
         var form = await _context.Forms.FirstOrDefaultAsync(f => f.Id == request.Id && f.CreatorId == request.UserId, cancellationToken);

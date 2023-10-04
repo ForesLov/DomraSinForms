@@ -1,7 +1,7 @@
 ﻿using DomraSinForms.Application.Features.Questions.Commands.CreateOptionsQuestion;
 using DomraSinForms.Application.Features.Questions.Commands.CreateTextQuestion;
+using DomraSinForms.Application.Features.Questions.Commands.Delete;
 using DomraSinForms.Application.Features.Questions.Commands.UpdateOptionsQuestion;
-using DomraSinForms.Application.Questions.Commands.Delete;
 using DomraSinForms.Domain.Models.Questions;
 using Forms.Mvc.ViewModels;
 using MediatR;

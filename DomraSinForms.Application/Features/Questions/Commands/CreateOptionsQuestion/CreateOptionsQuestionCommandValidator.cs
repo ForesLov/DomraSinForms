@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 
 namespace DomraSinForms.Application.Features.Questions.Commands.CreateOptionsQuestion;
+
 public class CreateOptionsQuestionCommandValidator : AbstractValidator<CreateOptionsQuestionCommand>
 {
     public CreateOptionsQuestionCommandValidator()

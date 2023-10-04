@@ -11,6 +11,7 @@ namespace DomraSinForms.Application.Features.Forms.Commands.Update
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string UserId { get; set; } = string.Empty;
+
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Form, UpdateFormCommand>()

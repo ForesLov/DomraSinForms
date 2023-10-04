@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomraSinForms.Persistence;
+﻿using DomraSinForms.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace DomraSinForms.Application.Features.Users.Queries.GetUserActionsSummary;
+
 public class GetUserActionsSummaryQueryHandler : IRequestHandler<GetUserActionsSummaryQuery, UsersActionsSummary?>
 {
     private readonly ApplicationDbContext _context;
@@ -16,6 +12,7 @@ public class GetUserActionsSummaryQueryHandler : IRequestHandler<GetUserActionsS
     {
         _context = context;
     }
+
     public async Task<UsersActionsSummary?> Handle(GetUserActionsSummaryQuery request, CancellationToken cancellationToken)
     {
         var result = new UsersActionsSummary();

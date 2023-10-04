@@ -4,6 +4,7 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DomraSinForms.Application;
+
 public static class ApplicationExtensions
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)
@@ -17,6 +18,5 @@ public static class ApplicationExtensions
             .AddValidatorsFromAssembly(typeof(ApplicationExtensions).Assembly)
             .AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>))
             .AddAutoMapper(typeof(ApplicationExtensions).Assembly);
-
     }
 }

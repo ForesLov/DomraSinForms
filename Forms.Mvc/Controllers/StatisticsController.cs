@@ -1,4 +1,4 @@
-﻿using DomraSinForms.Application.Answers.Queries.GetList;
+﻿using DomraSinForms.Application.Features.Answers.Queries.GetList;
 using Forms.Mvc.ViewModels.Statistics;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;

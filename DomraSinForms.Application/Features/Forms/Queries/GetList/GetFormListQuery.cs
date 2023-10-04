@@ -10,6 +10,7 @@ public class GetFormListQuery : IRequest<FormListDto>
     public string UserId { get; set; } = string.Empty;
     public FormOrderApproach OrderBy { get; set; } = FormOrderApproach.LastUpdateDescending;
 }
+
 public enum FormOrderApproach
 {
     Creation = 1,

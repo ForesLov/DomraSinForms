@@ -1,5 +1,5 @@
 ﻿using DomraSinForms.Application.Features.Answers.Queries.GetList;
-using DomraSinForms.Application.Questions.Queries.GetList;
+using DomraSinForms.Application.Features.Questions.Queries.GetList;
 using DomraSinForms.Domain.Models.Answers;
 using DomraSinForms.Domain.Models.Questions;
 using DomraSinForms.Persistence;
@@ -7,6 +7,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace DomraSinForms.Application.Features.Answers.Queries.GetEmptyForm;
+
 public class GetEmptyFormQueryHandler : IRequestHandler<GetEmptyFormQuery, FormAnswersDto?>
 {
     private readonly ApplicationDbContext _context;
@@ -17,6 +18,7 @@ public class GetEmptyFormQueryHandler : IRequestHandler<GetEmptyFormQuery, FormA
         _context = context;
         _mediator = mediator;
     }
+
     public async Task<FormAnswersDto?> Handle(GetEmptyFormQuery request, CancellationToken cancellationToken)
     {
         var currentAnswer = await _context.FormAnswers
@@ -36,7 +38,6 @@ public class GetEmptyFormQueryHandler : IRequestHandler<GetEmptyFormQuery, FormA
             .Where(form => !form.IsInArchive)
             .FirstOrDefaultAsync(f => f.Id == formId, cancellationToken);
 
-
         if (form is null)
             return null;
         var formAnswers = new FormAnswers
@@ -48,7 +49,6 @@ public class GetEmptyFormQueryHandler : IRequestHandler<GetEmptyFormQuery, FormA
 
         await _context.FormAnswers.AddAsync(formAnswers, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
-
 
         var command = new FormAnswersDto
         {
@@ -67,6 +67,7 @@ public class GetEmptyFormQueryHandler : IRequestHandler<GetEmptyFormQuery, FormA
 
         return command;
     }
+
     private async Task<FormAnswersDto?> UpdateCommand(FormAnswers currentFormAnswers, CancellationToken cancellationToken = default)
     {
         var form = await _context.Forms

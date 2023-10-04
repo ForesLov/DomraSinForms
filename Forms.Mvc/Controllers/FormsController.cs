@@ -1,10 +1,8 @@
-﻿using System.Runtime.InteropServices.JavaScript;
-using DomraSinForms.Application;
-using DomraSinForms.Application.Features.Forms.Commands.Create;
+﻿using DomraSinForms.Application.Features.Forms.Commands.Create;
+using DomraSinForms.Application.Features.Forms.Commands.Delete;
 using DomraSinForms.Application.Features.Forms.Commands.Update;
+using DomraSinForms.Application.Features.Forms.Queries.Get;
 using DomraSinForms.Application.Features.Forms.Queries.GetList;
-using DomraSinForms.Application.Forms.Commands.Delete;
-using DomraSinForms.Application.Forms.Queries.Get;
 using DomraSinForms.Domain.Identity;
 using Forms.Mvc.Helpers;
 using Forms.Mvc.ViewModels;

@@ -6,6 +6,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace DomraSinForms.Application.Features.Questions.Queries.GetList;
+
 public class GetQuestionListQueryHandler : IRequestHandler<GetQuestionListQuery, IEnumerable<QuestionBase>>
 {
     private readonly ApplicationDbContext _context;
@@ -16,13 +17,13 @@ public class GetQuestionListQueryHandler : IRequestHandler<GetQuestionListQuery,
         _context = context;
         _mapper = mapper;
     }
+
     public async Task<IEnumerable<QuestionBase>> Handle(GetQuestionListQuery request, CancellationToken cancellationToken)
     {
         var form = await _context.Forms
             .FirstOrDefaultAsync(f => f.Id == request.FormId);
         if (form is null)
             return Array.Empty<QuestionBase>();
-
 
         var tqs = _context.TextQuestions
             .Where(q => q.FormId == request.FormId)

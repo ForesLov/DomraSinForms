@@ -2,6 +2,7 @@
 using MediatR;
 
 namespace DomraSinForms.Application.Interfaces;
+
 public interface IGetListRequest<TEntity> : IRequest<IEnumerable<IMapWith<TEntity>>>
 {
     public int Page { get; set; }
