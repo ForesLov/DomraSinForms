@@ -16,7 +16,7 @@ builder.Services.AddDefaultIdentity<User>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
     options.SignIn.RequireConfirmedEmail = false;
-    options.SignIn.RequireConfirmedPhoneNumber = true;
+    options.SignIn.RequireConfirmedPhoneNumber = false;
     options.Lockout.MaxFailedAccessAttempts = 700;
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.MinValue;
 })
@@ -59,7 +59,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
-
 app.Run();
 
 

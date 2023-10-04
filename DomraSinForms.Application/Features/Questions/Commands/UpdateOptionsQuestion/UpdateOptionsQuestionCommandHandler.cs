@@ -1,18 +1,18 @@
 ﻿using DomraSinForms.Application.Features.Forms.Notifications.Update;
 using DomraSinForms.Application.Features.Questions.Notifications;
+using DomraSinForms.Domain.Interfaces.Repositories;
 using DomraSinForms.Domain.Models.Questions;
-using DomraSinForms.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace DomraSinForms.Application.Features.Questions.Commands.UpdateOptionsQuestion;
 
-internal class UpdateOptionsCommandHandler : IRequestHandler<UpdateOptionsQuestionCommand, OptionsQuestion?>
+internal class UpdateOptionsQuestionCommandHandler : IRequestHandler<UpdateOptionsQuestionCommand, OptionsQuestion?>
 {
-    private readonly ApplicationDbContext _context;
+    private readonly IDatabaseContext _context;
     private readonly IMediator _mediator;
 
-    public UpdateOptionsCommandHandler(ApplicationDbContext context, IMediator mediator)
+    public UpdateOptionsQuestionCommandHandler(IDatabaseContext context, IMediator mediator)
     {
         _context = context;
         _mediator = mediator;
@@ -20,7 +20,7 @@ internal class UpdateOptionsCommandHandler : IRequestHandler<UpdateOptionsQuesti
 
     public async Task<OptionsQuestion?> Handle(UpdateOptionsQuestionCommand request, CancellationToken cancellationToken)
     {
-        var question = await _context.OptionsQuestions
+        var question = await _context.Set<OptionsQuestion>()
             .Include(q => q.Options)
             .FirstOrDefaultAsync(q => q.Id == request.Id, cancellationToken);
         if (question is null)
@@ -32,7 +32,7 @@ internal class UpdateOptionsCommandHandler : IRequestHandler<UpdateOptionsQuesti
         question.Options = request.Options;
         question.Index = request.Index;
 
-        _context.Update(question);
+        _context.Set<OptionsQuestion>().Update(question);
         await _context.SaveChangesAsync(cancellationToken);
 
         await _mediator.Publish(new QuestionsUpdateNotification { FormId = question.FormId }, cancellationToken);

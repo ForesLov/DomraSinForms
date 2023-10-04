@@ -1,5 +1,6 @@
-﻿using DomraSinForms.Domain.Models.Answers;
-using DomraSinForms.Persistence;
+﻿using DomraSinForms.Domain.Interfaces.Repositories;
+using DomraSinForms.Domain.Models;
+using DomraSinForms.Domain.Models.Answers;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,16 +8,16 @@ namespace DomraSinForms.Application.Features.Answers.Commands.Create;
 
 public class CreateFormAnswersCommandHandler : IRequestHandler<CreateFormAnswersCommand, FormAnswers?>
 {
-    private readonly ApplicationDbContext _context;
+    private readonly IDatabaseContext _context;
 
-    public CreateFormAnswersCommandHandler(ApplicationDbContext context)
+    public CreateFormAnswersCommandHandler(IDatabaseContext context)
     {
         _context = context;
     }
 
     public async Task<FormAnswers?> Handle(CreateFormAnswersCommand request, CancellationToken cancellationToken)
     {
-        var formAnswers = await _context.FormAnswers
+        var formAnswers = await _context.Set<FormAnswers>()
             .Include(x => x.Answers)
             .FirstOrDefaultAsync(fa => fa.UserId == request.UserId && fa.FormId == request.FormId && !fa.IsCompleted, cancellationToken);
 
@@ -26,7 +27,7 @@ public class CreateFormAnswersCommandHandler : IRequestHandler<CreateFormAnswers
         if (formAnswers.IsCompleted)
             return formAnswers;
 
-        var form = await _context.Forms
+        var form = await _context.Set<Form>()
             .Include(x => x.Questions)
             .Include(f => f.Version)
             .FirstOrDefaultAsync(fa => fa.Id == formAnswers.FormId);
@@ -50,7 +51,7 @@ public class CreateFormAnswersCommandHandler : IRequestHandler<CreateFormAnswers
         formAnswers.CreationDate = DateTime.UtcNow;
         //formAnswers.FormVersionId = form.Version?.Id;
 
-        _context.Update(formAnswers);
+        _context.Set<FormAnswers>().Update(formAnswers);
         await _context.SaveChangesAsync(cancellationToken);
 
         return formAnswers;

@@ -1,8 +1,8 @@
 ﻿using System.Runtime.CompilerServices;
 using AutoMapper;
 using DomraSinForms.Application.Features.Answers.Queries.Get;
+using DomraSinForms.Domain.Interfaces.Repositories;
 using DomraSinForms.Domain.Models.Answers;
-using DomraSinForms.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,11 +10,11 @@ namespace DomraSinForms.Application.Features.Answers.Queries.GetList;
 
 public class GetFormAnswersListQueryHandler : IRequestHandler<GetFormAnswersListQuery, IEnumerable<FormAnswersDto>>
 {
-    private readonly ApplicationDbContext _context;
+    private readonly IDatabaseContext _context;
     private readonly IMapper _mapper;
     private readonly IMediator _mediator;
 
-    public GetFormAnswersListQueryHandler(ApplicationDbContext context, IMapper mapper, IMediator mediator)
+    public GetFormAnswersListQueryHandler(IDatabaseContext context, IMapper mapper, IMediator mediator)
     {
         _context = context;
         _mapper = mapper;
@@ -23,7 +23,7 @@ public class GetFormAnswersListQueryHandler : IRequestHandler<GetFormAnswersList
 
     public async Task<IEnumerable<FormAnswersDto>> Handle(GetFormAnswersListQuery request, CancellationToken cancellationToken)
     {
-        var formAnswersIds = await _context.FormAnswers
+        var formAnswersIds = await _context.Set<FormAnswers>()
             .Where(fa => fa.FormId == request.FormId && fa.IsCompleted)
             .Select(fa => fa.Id)
             .ToArrayAsync(cancellationToken);

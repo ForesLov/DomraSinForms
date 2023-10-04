@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DomraSinForms.Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,6 +18,6 @@ public static class Extensions
                 options.UseSqlServer(connectionString, 
                     options => options.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.GetName().Name));
             })
-            ;
+            .AddScoped<IDatabaseContext, ApplicationDbContext>();
     }
 }

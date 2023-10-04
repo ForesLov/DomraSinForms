@@ -112,7 +112,8 @@ namespace Forms.Mvc.Areas.Identity.Pages.Account
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return Page();
                 }
-                var result = await _signInManager.PasswordSignInAsync(user, password: Input.Password, isPersistent: Input.RememberMe, lockoutOnFailure: true);
+                var r = await _signInManager.CheckPasswordSignInAsync(user, Input.Password, false);
+                var result = await _signInManager.PasswordSignInAsync(user, password: Input.Password, isPersistent: Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");

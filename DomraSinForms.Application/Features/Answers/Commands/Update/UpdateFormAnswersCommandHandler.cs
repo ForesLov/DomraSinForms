@@ -1,5 +1,5 @@
-﻿using DomraSinForms.Domain.Models.Answers;
-using DomraSinForms.Persistence;
+﻿using DomraSinForms.Domain.Interfaces.Repositories;
+using DomraSinForms.Domain.Models.Answers;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,9 +7,9 @@ namespace DomraSinForms.Application.Features.Answers.Commands.Update;
 
 public class UpdateFormAnswersCommandHandler : IRequestHandler<UpdateFormAnswersCommand, FormAnswers?>
 {
-    private readonly ApplicationDbContext _context;
+    private readonly IDatabaseContext _context;
 
-    public UpdateFormAnswersCommandHandler(ApplicationDbContext context)
+    public UpdateFormAnswersCommandHandler(IDatabaseContext context)
     {
         _context = context;
     }
@@ -19,7 +19,7 @@ public class UpdateFormAnswersCommandHandler : IRequestHandler<UpdateFormAnswers
         if (request.Answer is null)
             return null;
 
-        var formAnswers = await _context.FormAnswers
+        var formAnswers = await _context.Set<FormAnswers>()
             .Include(f => f.Answers)
             .FirstOrDefaultAsync(f => f.FormId == request.FormId && f.UserId == request.UserId && !f.IsCompleted, cancellationToken);
         if (formAnswers is null)
@@ -34,7 +34,7 @@ public class UpdateFormAnswersCommandHandler : IRequestHandler<UpdateFormAnswers
         else
             answer.Value = request.Answer.Value;
 
-        _context.Update(formAnswers);
+        _context.Set<FormAnswers>().Update(formAnswers);
         await _context.SaveChangesAsync(cancellationToken);
 
         return formAnswers;

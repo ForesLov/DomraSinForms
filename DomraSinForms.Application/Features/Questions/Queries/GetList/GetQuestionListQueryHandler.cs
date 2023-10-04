@@ -1,7 +1,8 @@
 ﻿using System.Collections.Immutable;
 using AutoMapper;
+using DomraSinForms.Domain.Interfaces.Repositories;
+using DomraSinForms.Domain.Models;
 using DomraSinForms.Domain.Models.Questions;
-using DomraSinForms.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,10 +10,10 @@ namespace DomraSinForms.Application.Features.Questions.Queries.GetList;
 
 public class GetQuestionListQueryHandler : IRequestHandler<GetQuestionListQuery, IEnumerable<QuestionBase>>
 {
-    private readonly ApplicationDbContext _context;
+    private readonly IDatabaseContext _context;
     private readonly IMapper _mapper;
 
-    public GetQuestionListQueryHandler(ApplicationDbContext context, IMapper mapper)
+    public GetQuestionListQueryHandler(IDatabaseContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;
@@ -20,17 +21,17 @@ public class GetQuestionListQueryHandler : IRequestHandler<GetQuestionListQuery,
 
     public async Task<IEnumerable<QuestionBase>> Handle(GetQuestionListQuery request, CancellationToken cancellationToken)
     {
-        var form = await _context.Forms
+        var form = await _context.Set<Form>()
             .FirstOrDefaultAsync(f => f.Id == request.FormId);
         if (form is null)
             return Array.Empty<QuestionBase>();
 
-        var tqs = _context.TextQuestions
+        var tqs = _context.Set<TextQuestion>()
             .Where(q => q.FormId == request.FormId)
             .OrderBy(q => q.Index)
             .AsEnumerable();
 
-        var oqs = _context.OptionsQuestions
+        var oqs = _context.Set<OptionsQuestion>()
             .Where(q => q.FormId == request.FormId)
             .OrderBy(q => q.Index)
             .Include(oq => oq.Options)

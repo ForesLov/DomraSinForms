@@ -1,8 +1,9 @@
 ﻿using DomraSinForms.Application.Features.Answers.Queries.GetList;
 using DomraSinForms.Application.Features.Questions.Queries.GetList;
+using DomraSinForms.Domain.Interfaces.Repositories;
+using DomraSinForms.Domain.Models;
 using DomraSinForms.Domain.Models.Answers;
 using DomraSinForms.Domain.Models.Questions;
-using DomraSinForms.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,10 +11,10 @@ namespace DomraSinForms.Application.Features.Answers.Queries.GetEmptyForm;
 
 public class GetEmptyFormQueryHandler : IRequestHandler<GetEmptyFormQuery, FormAnswersDto?>
 {
-    private readonly ApplicationDbContext _context;
+    private readonly IDatabaseContext _context;
     private readonly IMediator _mediator;
 
-    public GetEmptyFormQueryHandler(ApplicationDbContext context, IMediator mediator)
+    public GetEmptyFormQueryHandler(IDatabaseContext context, IMediator mediator)
     {
         _context = context;
         _mediator = mediator;
@@ -21,7 +22,7 @@ public class GetEmptyFormQueryHandler : IRequestHandler<GetEmptyFormQuery, FormA
 
     public async Task<FormAnswersDto?> Handle(GetEmptyFormQuery request, CancellationToken cancellationToken)
     {
-        var currentAnswer = await _context.FormAnswers
+        var currentAnswer = await _context.Set<FormAnswers>()
             .Include(fa => fa.Answers)
             .FirstOrDefaultAsync(fa => fa.FormId == request.FormId && fa.UserId == request.UserId && !fa.IsCompleted, cancellationToken);
 
@@ -33,7 +34,7 @@ public class GetEmptyFormQueryHandler : IRequestHandler<GetEmptyFormQuery, FormA
 
     private async Task<FormAnswersDto?> CreateNewCommand(string formId, string userId, CancellationToken cancellationToken = default)
     {
-        var form = await _context.Forms
+        var form = await _context.Set<Form>()
             .Include(f => f.Questions)
             .Where(form => !form.IsInArchive)
             .FirstOrDefaultAsync(f => f.Id == formId, cancellationToken);
@@ -47,7 +48,7 @@ public class GetEmptyFormQueryHandler : IRequestHandler<GetEmptyFormQuery, FormA
             IsCompleted = false
         };
 
-        await _context.FormAnswers.AddAsync(formAnswers, cancellationToken);
+        await _context.Set<FormAnswers>().AddAsync(formAnswers, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
 
         var command = new FormAnswersDto
@@ -70,7 +71,7 @@ public class GetEmptyFormQueryHandler : IRequestHandler<GetEmptyFormQuery, FormA
 
     private async Task<FormAnswersDto?> UpdateCommand(FormAnswers currentFormAnswers, CancellationToken cancellationToken = default)
     {
-        var form = await _context.Forms
+        var form = await _context.Set<Form>()
             .Where(form => !form.IsInArchive)
             .FirstOrDefaultAsync(f => f.Id == currentFormAnswers.FormId, cancellationToken);
 

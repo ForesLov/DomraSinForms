@@ -2,9 +2,9 @@
 
 namespace DomraSinForms.Application.Features.Questions.Commands.UpdateOptionsQuestion;
 
-public class UpdateOptionsCommandValidator : AbstractValidator<UpdateOptionsQuestionCommand>
+public class UpdateOptionsQuestionCommandValidator : AbstractValidator<UpdateOptionsQuestionCommand>
 {
-    public UpdateOptionsCommandValidator()
+    public UpdateOptionsQuestionCommandValidator()
     {
         RuleFor(c => c.Options)
             .NotEmpty();

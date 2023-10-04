@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using DomraSinForms.Persistence;
+using DomraSinForms.Domain.Interfaces.Repositories;
+using DomraSinForms.Domain.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,10 +8,10 @@ namespace DomraSinForms.Application.Features.Forms.Queries.GetList
 {
     public class GetFormListQueryHandler : IRequestHandler<GetFormListQuery, FormListDto>
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IDatabaseContext _context;
         private readonly IMapper _mapper;
 
-        public GetFormListQueryHandler(ApplicationDbContext context, IMapper mapper)
+        public GetFormListQueryHandler(IDatabaseContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -23,7 +24,7 @@ namespace DomraSinForms.Application.Features.Forms.Queries.GetList
                 Query = request,
             };
 
-            var forms = _context.Forms
+            var forms = _context.Set<Form>()
                 .Where(f => f.CreatorId == request.UserId)
                 .Where(f => f.Title.Contains(request.SearchText) | f.Description.Contains(request.SearchText))
                 .Order(request.OrderBy);
@@ -35,7 +36,7 @@ namespace DomraSinForms.Application.Features.Forms.Queries.GetList
                 forms
                     .Skip(request.Page * request.Count)
                     .Take(request.Count))
-                .ToArrayAsync();
+                .ToArrayAsync(cancellationToken);
 
             return result;
         }

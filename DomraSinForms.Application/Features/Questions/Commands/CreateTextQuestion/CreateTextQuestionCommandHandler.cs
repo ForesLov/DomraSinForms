@@ -1,7 +1,8 @@
 ﻿using DomraSinForms.Application.Features.Forms.Notifications.Update;
 using DomraSinForms.Application.Features.Questions.Notifications;
+using DomraSinForms.Domain.Interfaces.Repositories;
+using DomraSinForms.Domain.Models;
 using DomraSinForms.Domain.Models.Questions;
-using DomraSinForms.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,10 +10,10 @@ namespace DomraSinForms.Application.Features.Questions.Commands.CreateTextQuesti
 
 public class CreateTextQuestionCommandHandler : IRequestHandler<CreateTextQuestionCommand, TextQuestion?>
 {
-    private readonly ApplicationDbContext _context;
+    private readonly IDatabaseContext _context;
     private readonly IMediator _mediator;
 
-    public CreateTextQuestionCommandHandler(ApplicationDbContext context, IMediator mediator)
+    public CreateTextQuestionCommandHandler(IDatabaseContext context, IMediator mediator)
     {
         _context = context;
         _mediator = mediator;
@@ -20,7 +21,7 @@ public class CreateTextQuestionCommandHandler : IRequestHandler<CreateTextQuesti
 
     public async Task<TextQuestion?> Handle(CreateTextQuestionCommand request, CancellationToken cancellationToken)
     {
-        var form = await _context.Forms
+        var form = await _context.Set<Form>()
             .Include(x => x.Questions)
             .FirstOrDefaultAsync(f => f.Id == request.FormId, cancellationToken);
 
@@ -37,7 +38,7 @@ public class CreateTextQuestionCommandHandler : IRequestHandler<CreateTextQuesti
 
         form.Questions.Add(question);
 
-        _context.Update(form);
+        _context.Set<Form>().Update(form);
         await _context.SaveChangesAsync(cancellationToken);
 
         await _mediator.Publish(new QuestionsUpdateNotification { FormId = question.FormId }, cancellationToken);
