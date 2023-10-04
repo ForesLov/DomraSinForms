@@ -8,7 +8,7 @@ using DomraSinForms.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace DomraSinForms.Application.Forms.Commands.Archive;
+namespace DomraSinForms.Application.Features.Forms.Commands.Archive;
 public class ArchiveFormCommandHandler : IRequestHandler<ArchiveFormCommand, Form?>
 {
     private readonly ApplicationDbContext _context;

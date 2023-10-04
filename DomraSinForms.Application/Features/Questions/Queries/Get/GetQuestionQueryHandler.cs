@@ -3,7 +3,7 @@ using DomraSinForms.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace DomraSinForms.Application.Questions.Queries.Get;
+namespace DomraSinForms.Application.Features.Questions.Queries.Get;
 public class GetQuestionQueryHandler : IRequestHandler<GetQuestionQuery, QuestionBase?>
 {
     private readonly ApplicationDbContext _context;

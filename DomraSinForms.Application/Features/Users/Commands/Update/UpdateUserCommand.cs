@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using DomraSinForms.Domain.Identity;
 using MediatR;
 
-namespace DomraSinForms.Application.Users.Update;
+namespace DomraSinForms.Application.Features.Users.Commands.Update;
 public class UpdateUserCommand : IRequest<Option<User>>
 {
     /// <summary>

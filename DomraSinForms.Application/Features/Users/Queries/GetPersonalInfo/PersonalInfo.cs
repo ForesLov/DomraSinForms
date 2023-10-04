@@ -1,6 +1,6 @@
 using DomraSinForms.Domain.Identity;
 
-namespace DomraSinForms.Application.Users.Queries.GetPersonalInfo;
+namespace DomraSinForms.Application.Features.Users.Queries.GetPersonalInfo;
 
 public class PersonalInfo
 {

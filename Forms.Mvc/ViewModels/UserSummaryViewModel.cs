@@ -1,4 +1,4 @@
-﻿using DomraSinForms.Application.Users.Queries;
+﻿using DomraSinForms.Application.Features.Users.Queries.GetUserActionsSummary;
 using DomraSinForms.Domain.Models;
 using DomraSinForms.Domain.Models.Answers;
 using DomraSinForms.Domain.Models.Versions;

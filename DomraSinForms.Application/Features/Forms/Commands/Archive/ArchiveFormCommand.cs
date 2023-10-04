@@ -1,7 +1,7 @@
 ﻿using DomraSinForms.Domain.Models;
 using MediatR;
 
-namespace DomraSinForms.Application.Forms.Commands.Archive;
+namespace DomraSinForms.Application.Features.Forms.Commands.Archive;
 public class ArchiveFormCommand : IRequest<Form?>
 {
     /// <summary>

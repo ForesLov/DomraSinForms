@@ -1,7 +1,7 @@
 using DomraSinForms.Domain.Models;
 using MediatR;
 
-namespace DomraSinForms.Application.Forms.Queries.GetMin;
+namespace DomraSinForms.Application.Features.Forms.Queries.GetMin;
 
 public class GetMinFormQuery : IRequest<Option<Form>>
 {

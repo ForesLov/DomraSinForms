@@ -3,7 +3,7 @@ using DomraSinForms.Application.Mapper;
 using DomraSinForms.Domain.Models.Answers;
 using DomraSinForms.Domain.Models.Versions;
 
-namespace DomraSinForms.Application.Answers.Queries.GetList;
+namespace DomraSinForms.Application.Features.Answers.Queries.GetList;
 
 public class FormAnswersDto : IMapWith<FormAnswers>
 {

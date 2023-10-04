@@ -7,7 +7,7 @@ using DomraSinForms.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace DomraSinForms.Application.Users.Queries;
+namespace DomraSinForms.Application.Features.Users.Queries.GetUserActionsSummary;
 public class GetUserActionsSummaryQueryHandler : IRequestHandler<GetUserActionsSummaryQuery, UsersActionsSummary?>
 {
     private readonly ApplicationDbContext _context;

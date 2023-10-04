@@ -6,17 +6,17 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddPersistence(connectionString);
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<User>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
     options.SignIn.RequireConfirmedEmail = false;
-    options.SignIn.RequireConfirmedPhoneNumber = false;
+    options.SignIn.RequireConfirmedPhoneNumber = true;
     options.Lockout.MaxFailedAccessAttempts = 700;
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.MinValue;
 })
@@ -61,8 +61,6 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
-
-
 
 
 void ConfigLocalization(WebApplication application)

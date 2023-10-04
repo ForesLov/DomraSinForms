@@ -1,4 +1,4 @@
-﻿using DomraSinForms.Application.Forms.Commands.Update;
+﻿using DomraSinForms.Application.Features.Forms.Commands.Update;
 using DomraSinForms.Domain.Models;
 
 namespace Forms.Mvc.ViewModels;

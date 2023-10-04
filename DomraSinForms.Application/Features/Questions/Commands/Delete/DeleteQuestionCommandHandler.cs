@@ -3,7 +3,7 @@ using DomraSinForms.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace DomraSinForms.Application.Questions.Commands.Delete;
+namespace DomraSinForms.Application.Features.Questions.Commands.Delete;
 public class DeleteQuestionCommandHandler : IRequestHandler<DeleteQuestionCommand, bool>
 {
     private readonly ApplicationDbContext _context;

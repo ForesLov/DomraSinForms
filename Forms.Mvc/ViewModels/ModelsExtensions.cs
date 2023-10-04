@@ -1,4 +1,4 @@
-﻿using DomraSinForms.Application.Forms.Queries.GetList;
+﻿using DomraSinForms.Application.Features.Forms.Queries.GetList;
 using DomraSinForms.Domain.Models;
 using DomraSinForms.Domain.Models.Answers;
 using Microsoft.AspNetCore.Mvc.Localization;

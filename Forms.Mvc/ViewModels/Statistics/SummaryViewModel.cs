@@ -1,4 +1,4 @@
-﻿using DomraSinForms.Application.Answers.Queries.GetList;
+﻿using DomraSinForms.Application.Features.Answers.Queries.GetList;
 using DomraSinForms.Domain.Models;
 
 namespace Forms.Mvc.ViewModels.Statistics;

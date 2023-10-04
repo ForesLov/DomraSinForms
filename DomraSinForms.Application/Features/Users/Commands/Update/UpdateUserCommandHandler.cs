@@ -8,7 +8,7 @@ using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace DomraSinForms.Application.Users.Update;
+namespace DomraSinForms.Application.Features.Users.Commands.Update;
 public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, Option<User>>
 {
     private readonly UserManager<User> _userManager;

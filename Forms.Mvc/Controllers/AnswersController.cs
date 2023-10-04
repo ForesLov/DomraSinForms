@@ -3,10 +3,8 @@ using DomraSinForms.Application;
 using DomraSinForms.Application.Answers.Commands.Create;
 using DomraSinForms.Application.Answers.Commands.Update;
 using DomraSinForms.Application.Answers.Queries.GetEmptyForm;
-using DomraSinForms.Application.Answers.Queries.GetList;
 using DomraSinForms.Domain.Models;
 using DomraSinForms.Application.Forms.Queries.Get;
-using DomraSinForms.Application.Forms.Queries.GetList;
 using DomraSinForms.Application.Forms.Queries.GetMin;
 using DomraSinForms.Domain.Identity;
 using Forms.Mvc.Helpers;
@@ -16,6 +14,8 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using DomraSinForms.Application.Features.Answers.Queries.GetList;
+using DomraSinForms.Application.Features.Forms.Queries.GetList;
 
 namespace Forms.Mvc.Controllers;
 

@@ -1,7 +1,7 @@
 ﻿using DomraSinForms.Domain.Models.Questions;
 using MediatR;
 
-namespace DomraSinForms.Application.Questions.Commands;
+namespace DomraSinForms.Application.Features.Questions.Commands;
 public class CreateQuestionBaseCommand
 {
     public string FormId { get; set; } = string.Empty;

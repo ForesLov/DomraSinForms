@@ -1,5 +1,5 @@
 ﻿using System.Collections.Immutable;
-using DomraSinForms.Application.Answers.Queries.GetList;
+using DomraSinForms.Application.Features.Answers.Queries.GetList;
 using DomraSinForms.Domain.Models;
 using DomraSinForms.Domain.Models.Answers;
 

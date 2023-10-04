@@ -5,7 +5,7 @@ using DomraSinForms.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace DomraSinForms.Application.Questions.Commands.CreateTextQuestion;
+namespace DomraSinForms.Application.Features.Questions.Commands.CreateTextQuestion;
 public class CreateTextQuestionCommandHandler : IRequestHandler<CreateTextQuestionCommand, TextQuestion?>
 {
     private readonly ApplicationDbContext _context;

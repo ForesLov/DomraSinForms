@@ -5,7 +5,7 @@ using DomraSinForms.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace DomraSinForms.Application.Forms.Queries.Get;
+namespace DomraSinForms.Application.Features.Forms.Queries.Get;
 
 public class GetFormQueryHandler : IRequestHandler<GetFormQuery, Option<Form>>
 {
@@ -20,7 +20,7 @@ public class GetFormQueryHandler : IRequestHandler<GetFormQuery, Option<Form>>
     public async Task<Option<Form>> Handle(GetFormQuery request, CancellationToken cancellationToken)
     {
         var form = await _context.Forms
-            .Where(form => form.CreatorId == request.UserId 
+            .Where(form => form.CreatorId == request.UserId
                         || form.AllowedUsers.Any(user => user.Id == request.UserId))
             .FirstOrDefaultAsync(form => form.Id == request.Id, cancellationToken);
 

@@ -3,7 +3,7 @@ using DomraSinForms.Application.Mapper;
 using DomraSinForms.Domain.Models;
 using MediatR;
 
-namespace DomraSinForms.Application.Forms.Commands.Create;
+namespace DomraSinForms.Application.Features.Forms.Commands.Create;
 public class CreateFormCommand : IRequest<Form>, IMapWith<Form>
 {
     public string Title { get; set; } = string.Empty;

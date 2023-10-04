@@ -1,7 +1,7 @@
 ﻿using DomraSinForms.Domain.Models.Questions;
 using MediatR;
 
-namespace DomraSinForms.Application.Questions.Queries.GetList;
+namespace DomraSinForms.Application.Features.Questions.Queries.GetList;
 public class GetQuestionListQuery : IRequest<IEnumerable<QuestionBase>>
 {
     public int Page { get => 0; set { } }

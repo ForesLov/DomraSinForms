@@ -5,7 +5,7 @@ using DomraSinForms.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace DomraSinForms.Application.Forms.Queries.GetMin;
+namespace DomraSinForms.Application.Features.Forms.Queries.GetMin;
 
 public class GetMinFormQueryHandler : IRequestHandler<GetMinFormQuery, Option<Form>>
 {

@@ -3,7 +3,7 @@ using DomraSinForms.Application.Interfaces;
 using DomraSinForms.Application.Mapper;
 using DomraSinForms.Domain.Models;
 
-namespace DomraSinForms.Application.Forms.Commands.Update
+namespace DomraSinForms.Application.Features.Forms.Commands.Update
 {
     public class UpdateFormCommand : IUpdateRequest<Form?>, IMapWith<Form>
     {

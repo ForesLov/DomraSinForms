@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace DomraSinForms.Application.Answers.Queries.GetList;
+namespace DomraSinForms.Application.Features.Answers.Queries.GetList;
 public class GetFormAnswersListQuery : IRequest<IEnumerable<FormAnswersDto>>
 {
     public int Page { get => 0; set { } }

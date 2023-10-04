@@ -25,9 +25,4 @@
     <ProjectReference Include="..\DomraSinForms.Domen\DomraSinForms.Domain.csproj" />
     <ProjectReference Include="..\DomraSinForms.Persistence\DomraSinForms.Persistence.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Features\" />
-    <Folder Include="Features\Users\Commands\" />
-  </ItemGroup>
 </Project>

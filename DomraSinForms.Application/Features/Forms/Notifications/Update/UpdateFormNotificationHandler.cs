@@ -3,7 +3,7 @@ using DomraSinForms.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace DomraSinForms.Application.Forms.Notifications.Update;
+namespace DomraSinForms.Application.Features.Forms.Notifications.Update;
 public class UpdateFormNotificationHandler : INotificationHandler<UpdateFormNotification>
 {
     private readonly ApplicationDbContext _context;

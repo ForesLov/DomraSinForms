@@ -6,7 +6,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace DomraSinForms.Application.Forms.Commands.Update
+namespace DomraSinForms.Application.Features.Forms.Commands.Update
 {
     public class UpdateFormCommandHandler : IRequestHandler<UpdateFormCommand, Form?>
     {

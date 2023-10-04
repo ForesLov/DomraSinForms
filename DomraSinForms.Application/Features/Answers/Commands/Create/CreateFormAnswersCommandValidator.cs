@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace DomraSinForms.Application.Answers.Commands.Create;
+namespace DomraSinForms.Application.Features.Answers.Commands.Create;
 public class CreateFormAnswersCommandValidator : AbstractValidator<CreateFormAnswersCommand>
 {
     public CreateFormAnswersCommandValidator()

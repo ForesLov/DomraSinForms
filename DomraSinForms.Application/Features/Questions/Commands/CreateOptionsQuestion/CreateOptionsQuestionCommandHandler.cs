@@ -5,7 +5,7 @@ using DomraSinForms.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace DomraSinForms.Application.Questions.Commands.CreateOptionsQuestion;
+namespace DomraSinForms.Application.Features.Questions.Commands.CreateOptionsQuestion;
 public class CreateOptionsQuestionCommandHandler : IRequestHandler<CreateOptionsQuestionCommand, OptionsQuestion?>
 {
     private readonly ApplicationDbContext _context;

@@ -5,7 +5,7 @@ using DomraSinForms.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace DomraSinForms.Application.Questions.Queries.GetList;
+namespace DomraSinForms.Application.Features.Questions.Queries.GetList;
 public class GetQuestionListQueryHandler : IRequestHandler<GetQuestionListQuery, IEnumerable<QuestionBase>>
 {
     private readonly ApplicationDbContext _context;

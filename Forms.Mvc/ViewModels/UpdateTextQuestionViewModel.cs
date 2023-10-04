@@ -1,4 +1,4 @@
-﻿using DomraSinForms.Application.Questions.Commands.UpdateTextQuestion;
+﻿using DomraSinForms.Application.Features.Questions.Commands.UpdateTextQuestion;
 using DomraSinForms.Domain.Models.Questions;
 
 namespace Forms.Mvc.ViewModels;

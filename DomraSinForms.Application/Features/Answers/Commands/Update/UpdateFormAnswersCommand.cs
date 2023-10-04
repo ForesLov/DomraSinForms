@@ -1,7 +1,7 @@
 ﻿using DomraSinForms.Domain.Models.Answers;
 using MediatR;
 
-namespace DomraSinForms.Application.Answers.Commands.Update;
+namespace DomraSinForms.Application.Features.Answers.Commands.Update;
 
 public class UpdateFormAnswersCommand : IRequest<FormAnswers?>
 {

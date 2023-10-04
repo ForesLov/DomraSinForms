@@ -6,7 +6,7 @@ using DomraSinForms.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace DomraSinForms.Application.Answers.Queries.GetList;
+namespace DomraSinForms.Application.Features.Answers.Queries.GetList;
 public class GetFormAnswersListQueryHandler : IRequestHandler<GetFormAnswersListQuery, IEnumerable<FormAnswersDto>>
 {
     private readonly ApplicationDbContext _context;

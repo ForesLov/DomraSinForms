@@ -1,6 +1,6 @@
 ﻿using DomraSinForms.Application.Interfaces;
 
-namespace DomraSinForms.Application.Forms.Commands.Delete;
+namespace DomraSinForms.Application.Features.Forms.Commands.Delete;
 
 public class DeleteFormCommand : IDeleteRequest
 {

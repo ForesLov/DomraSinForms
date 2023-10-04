@@ -5,7 +5,7 @@ using DomraSinForms.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace DomraSinForms.Application.Questions.Commands.UpdateOptionsQuestion;
+namespace DomraSinForms.Application.Features.Questions.Commands.UpdateOptionsQuestion;
 internal class UpdateOptionsCommandHandler : IRequestHandler<UpdateOptionsQuestionCommand, OptionsQuestion?>
 {
     private readonly ApplicationDbContext _context;

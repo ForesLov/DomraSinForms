@@ -4,7 +4,7 @@ using DomraSinForms.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace DomraSinForms.Application.Answers.Queries.Get
+namespace DomraSinForms.Application.Features.Answers.Queries.Get
 {
     public class GetFormAnswersQueryHandler : IRequestHandler<GetFormAnswersQuery, FormAnswers?>
     {

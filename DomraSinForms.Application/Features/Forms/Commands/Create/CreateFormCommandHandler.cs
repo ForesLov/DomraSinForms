@@ -4,7 +4,7 @@ using DomraSinForms.Persistence;
 
 using MediatR;
 
-namespace DomraSinForms.Application.Forms.Commands.Create;
+namespace DomraSinForms.Application.Features.Forms.Commands.Create;
 public class CreateFormCommandHandler : IRequestHandler<CreateFormCommand, Form>
 {
     private readonly ApplicationDbContext _context;

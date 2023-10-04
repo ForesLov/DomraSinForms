@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace DomraSinForms.Application.Forms.Queries.GetList;
+namespace DomraSinForms.Application.Features.Forms.Queries.GetList;
 
 public class GetFormListQuery : IRequest<FormListDto>
 {

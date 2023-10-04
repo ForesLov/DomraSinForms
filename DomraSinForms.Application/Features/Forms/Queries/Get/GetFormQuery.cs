@@ -2,9 +2,9 @@
 using DomraSinForms.Domain.Models;
 using MediatR;
 
-namespace DomraSinForms.Application.Forms.Queries.Get;
+namespace DomraSinForms.Application.Features.Forms.Queries.Get;
 
-public record class GetFormQuery (string Id, string UserId) : IRequest<Option<Form>>
+public record class GetFormQuery(string Id, string UserId) : IRequest<Option<Form>>
 {
-    
+
 }

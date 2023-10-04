@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace DomraSinForms.Application.Forms.Commands.Delete;
+namespace DomraSinForms.Application.Features.Forms.Commands.Delete;
 
 public class DeleteFormCommandHandler : IRequestHandler<DeleteFormCommand, bool>
 {

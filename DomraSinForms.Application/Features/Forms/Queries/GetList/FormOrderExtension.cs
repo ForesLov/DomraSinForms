@@ -1,6 +1,6 @@
 ﻿using DomraSinForms.Domain.Models;
 
-namespace DomraSinForms.Application.Forms.Queries.GetList;
+namespace DomraSinForms.Application.Features.Forms.Queries.GetList;
 public static class FormOrderExtension
 {
     public static IOrderedQueryable<Form> Order(this IQueryable<Form> source, FormOrderApproach orderBy)

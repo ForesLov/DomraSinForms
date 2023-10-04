@@ -6,7 +6,7 @@ using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace DomraSinForms.Application.Users.Queries.GetPersonalInfo;
+namespace DomraSinForms.Application.Features.Users.Queries.GetPersonalInfo;
 
 public class GetPersonalInfoHandler : IRequestHandler<GetPersonalInfo, Option<PersonalInfo>>
 {

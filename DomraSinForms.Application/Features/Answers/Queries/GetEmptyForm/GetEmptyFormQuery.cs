@@ -1,7 +1,7 @@
-﻿using DomraSinForms.Application.Answers.Queries.GetList;
+﻿using DomraSinForms.Application.Features.Answers.Queries.GetList;
 using MediatR;
 
-namespace DomraSinForms.Application.Answers.Queries.GetEmptyForm;
+namespace DomraSinForms.Application.Features.Answers.Queries.GetEmptyForm;
 public class GetEmptyFormQuery : IRequest<FormAnswersDto?>
 {
     public string FormId { get; set; } = "";

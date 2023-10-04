@@ -1,7 +1,7 @@
 ﻿using DomraSinForms.Domain.Models.Answers;
 using MediatR;
 
-namespace DomraSinForms.Application.Answers.Commands.Create;
+namespace DomraSinForms.Application.Features.Answers.Commands.Create;
 
 public class CreateFormAnswersCommand : IRequest<FormAnswers?>
 {

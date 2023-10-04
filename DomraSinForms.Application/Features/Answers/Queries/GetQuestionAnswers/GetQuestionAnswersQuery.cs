@@ -1,7 +1,7 @@
 ﻿using DomraSinForms.Domain.Models.Answers;
 using MediatR;
 
-namespace DomraSinForms.Application.Answers.Queries.GetQuestionAnswers;
+namespace DomraSinForms.Application.Features.Answers.Queries.GetQuestionAnswers;
 public class GetQuestionAnswersQuery : IRequest<IEnumerable<Answer>>
 {
     /// <summary>

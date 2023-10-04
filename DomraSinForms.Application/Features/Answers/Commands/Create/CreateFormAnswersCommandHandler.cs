@@ -3,7 +3,7 @@ using DomraSinForms.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace DomraSinForms.Application.Answers.Commands.Create;
+namespace DomraSinForms.Application.Features.Answers.Commands.Create;
 public class CreateFormAnswersCommandHandler : IRequestHandler<CreateFormAnswersCommand, FormAnswers?>
 {
     private readonly ApplicationDbContext _context;

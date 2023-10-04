@@ -4,7 +4,7 @@ using DomraSinForms.Domain.Models.Questions;
 using DomraSinForms.Persistence;
 using MediatR;
 
-namespace DomraSinForms.Application.Questions.Commands.UpdateTextQuestion;
+namespace DomraSinForms.Application.Features.Questions.Commands.UpdateTextQuestion;
 public class UpdateTextQuestionCommandHandler : IRequestHandler<UpdateTextQuestionCommand, TextQuestion?>
 {
     private readonly ApplicationDbContext _context;

@@ -1,4 +1,4 @@
-﻿using DomraSinForms.Application.Answers.Queries.GetList;
+﻿using DomraSinForms.Application.Features.Answers.Queries.GetList;
 using DomraSinForms.Application.Questions.Queries.GetList;
 using DomraSinForms.Domain.Models.Answers;
 using DomraSinForms.Domain.Models.Questions;
@@ -6,7 +6,7 @@ using DomraSinForms.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace DomraSinForms.Application.Answers.Queries.GetEmptyForm;
+namespace DomraSinForms.Application.Features.Answers.Queries.GetEmptyForm;
 public class GetEmptyFormQueryHandler : IRequestHandler<GetEmptyFormQuery, FormAnswersDto?>
 {
     private readonly ApplicationDbContext _context;

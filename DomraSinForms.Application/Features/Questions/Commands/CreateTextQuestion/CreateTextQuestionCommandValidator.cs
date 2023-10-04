@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace DomraSinForms.Application.Questions.Commands.CreateTextQuestion;
+namespace DomraSinForms.Application.Features.Questions.Commands.CreateTextQuestion;
 public class CreateTextQuestionCommandValidator : AbstractValidator<CreateTextQuestionCommand>
 {
     public CreateTextQuestionCommandValidator()

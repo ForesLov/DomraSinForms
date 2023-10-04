@@ -2,7 +2,7 @@
 using DomraSinForms.Application.Mapper;
 using DomraSinForms.Domain.Models.Questions;
 
-namespace DomraSinForms.Application.Questions.Queries.GetList;
+namespace DomraSinForms.Application.Features.Questions.Queries.GetList;
 public class QuestionBaseDto : IMapWith<QuestionBase>
 {
     public string Id { get; set; } = string.Empty;

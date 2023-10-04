@@ -1,6 +1,7 @@
-﻿using DomraSinForms.Domain.Models.Questions;
+﻿using DomraSinForms.Application.Features.Questions.Commands;
+using DomraSinForms.Domain.Models.Questions;
 
-namespace DomraSinForms.Application.Questions.Commands.UpdateOptionsQuestion;
+namespace DomraSinForms.Application.Features.Questions.Commands.UpdateOptionsQuestion;
 
 #nullable disable
 

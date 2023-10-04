@@ -4,7 +4,7 @@ using DomraSinForms.Domain.Models;
 using DomraSinForms.Domain.Models.Questions;
 using DomraSinForms.Domain.Models.Versions;
 
-namespace DomraSinForms.Application.Forms.Queries.GetList;
+namespace DomraSinForms.Application.Features.Forms.Queries.GetList;
 
 public class FormDto : IMapWith<Form>
 {

@@ -3,7 +3,7 @@ using DomraSinForms.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace DomraSinForms.Application.Forms.Queries.GetList
+namespace DomraSinForms.Application.Features.Forms.Queries.GetList
 {
     public class GetFormListQueryHandler : IRequestHandler<GetFormListQuery, FormListDto>
     {
@@ -28,7 +28,7 @@ namespace DomraSinForms.Application.Forms.Queries.GetList
                 .Order(request.OrderBy);
 
             result.PageCount = (int)Math.Round(
-                (double)forms.Count() / (double)request.Count, MidpointRounding.ToPositiveInfinity);
+                forms.Count() / (double)request.Count, MidpointRounding.ToPositiveInfinity);
 
             result.Forms = await _mapper.ProjectTo<FormDto>(
                 forms
