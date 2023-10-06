@@ -1,4 +1,4 @@
-﻿using DomraSinForms.Domain.Models.Questions;
+﻿using DomraSinForms.Domain.Models.Forms.Questions.Types;
 
 namespace DomraSinForms.Application.Features.Questions.Commands.UpdateOptionsQuestion;
 

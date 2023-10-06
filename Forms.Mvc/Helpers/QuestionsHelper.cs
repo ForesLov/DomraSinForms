@@ -1,4 +1,4 @@
-﻿using DomraSinForms.Domain.Models.Questions;
+﻿using DomraSinForms.Domain.Models.Forms.Questions.Types;
 using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json.Linq;

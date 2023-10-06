@@ -1,4 +1,4 @@
-﻿namespace DomraSinForms.Domain.Models.Questions;
+﻿namespace DomraSinForms.Domain.Models.Forms.Questions.Types;
 
 #nullable disable
 

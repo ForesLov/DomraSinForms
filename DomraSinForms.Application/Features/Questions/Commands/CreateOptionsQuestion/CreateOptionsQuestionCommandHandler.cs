@@ -2,7 +2,7 @@
 using DomraSinForms.Application.Features.Questions.Notifications;
 using DomraSinForms.Domain.Interfaces.Repositories;
 using DomraSinForms.Domain.Models;
-using DomraSinForms.Domain.Models.Questions;
+using DomraSinForms.Domain.Models.Forms.Questions.Types;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 

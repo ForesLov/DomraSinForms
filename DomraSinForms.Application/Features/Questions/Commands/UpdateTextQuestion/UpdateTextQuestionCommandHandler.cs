@@ -1,7 +1,7 @@
 ﻿using DomraSinForms.Application.Features.Forms.Notifications.Update;
 using DomraSinForms.Application.Features.Questions.Notifications;
 using DomraSinForms.Domain.Interfaces.Repositories;
-using DomraSinForms.Domain.Models.Questions;
+using DomraSinForms.Domain.Models.Forms.Questions.Types;
 using MediatR;
 
 namespace DomraSinForms.Application.Features.Questions.Commands.UpdateTextQuestion;

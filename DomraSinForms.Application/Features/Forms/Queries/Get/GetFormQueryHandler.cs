@@ -22,7 +22,7 @@ public class GetFormQueryHandler : IRequestHandler<GetFormQuery, Option<Form>>
     {
         var form = await _context.Set<Form>()
             .Where(form => form.CreatorId == request.UserId
-                        || form.AllowedUsers.Any(user => user.Id == request.UserId))
+                        || form.Collaborators.Any(user => user.Id == request.UserId))
             .FirstOrDefaultAsync(form => form.Id == request.Id, cancellationToken);
 
         if (form is null)

@@ -2,6 +2,8 @@
 using DomraSinForms.Domain.Interfaces.Repositories;
 using DomraSinForms.Domain.Models;
 using DomraSinForms.Domain.Models.Answers;
+using DomraSinForms.Domain.Models.Forms.Questions;
+using DomraSinForms.Domain.Models.Forms.Questions.Types;
 using DomraSinForms.Domain.Models.Questions;
 using DomraSinForms.Domain.Models.Versions;
 using Microsoft.AspNetCore.Identity;
@@ -26,6 +28,7 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole, string
     public DbSet<TextQuestion> TextQuestions { get; set; }
     public DbSet<OptionsQuestion> OptionsQuestions { get; set; }
     public DbSet<QuestionOption> QuestionOptions { get; set; }
+    public DbSet<QuestionRightAnswer> QuestionRightAnswers { get; set; }
     //public override DbSet<User> Users { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {

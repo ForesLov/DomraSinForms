@@ -1,4 +1,6 @@
-﻿namespace DomraSinForms.Domain.Models.Questions;
+﻿using DomraSinForms.Domain.Models.Questions;
+
+namespace DomraSinForms.Domain.Models.Forms.Questions.Types;
 public class TextQuestion : QuestionBase
 {
     public TextQuestionType Type { get; set; }

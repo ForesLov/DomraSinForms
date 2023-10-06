@@ -17,5 +17,5 @@ public class Form : DbEntity
     public List<FormAnswers> FormAnswers { get; set; } = new();
     public FormVersion? Version { get; set; }
     public bool IsInArchive { get; set; }
-    public ICollection<User> AllowedUsers { get; set; }
+    public ICollection<User> Collaborators { get; set; }
 }
