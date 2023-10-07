@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomraSinForms.Persistence",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomraSinForms.ChartsWrapper", "DomraSinForms.ChartsWrapper\DomraSinForms.ChartsWrapper.csproj", "{6530CF9E-096C-4EEB-8F92-7B78246FFF11}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomraSinForms.Server", "DomraSinForms.Server\DomraSinForms.Server.csproj", "{DEC1206D-5013-42C8-829F-99D0329DB47D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{6530CF9E-096C-4EEB-8F92-7B78246FFF11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6530CF9E-096C-4EEB-8F92-7B78246FFF11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6530CF9E-096C-4EEB-8F92-7B78246FFF11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEC1206D-5013-42C8-829F-99D0329DB47D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEC1206D-5013-42C8-829F-99D0329DB47D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEC1206D-5013-42C8-829F-99D0329DB47D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEC1206D-5013-42C8-829F-99D0329DB47D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
