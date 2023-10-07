@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using DomraSinForms.Application.Features.Answers.Queries.GetList;
 using DomraSinForms.Application.Features.Forms.Queries.GetList;
-using DomraSinForms.Application.Features.Answers.Commands.Create;
+using DomraSinForms.Application.Features.Answers.Commands.Complete;
 using DomraSinForms.Application.Features.Answers.Queries.GetEmptyForm;
 using DomraSinForms.Application.Features.Forms.Queries.GetMin;
 using DomraSinForms.Application.Features.Answers.Commands.Update;
@@ -134,7 +134,7 @@ public class AnswersController : Controller
         if (userId is null)
             return RedirectToAction(nameof(Fill), routeValues: new { id = formId });
 
-        var result = await _mediator.Send(new CreateFormAnswersCommand { FormId = formId, UserId = userId });
+        var result = await _mediator.Send(new CompleteFormAnswersCommand { FormId = formId, UserId = userId });
         if (result is null)
             return RedirectToAction(nameof(Fill), routeValues: new { id = formId });
 

@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using DomraSinForms.Application.Features.Answers.Commands.Create;
+using DomraSinForms.Application.Features.Answers.Commands.Complete;
 using DomraSinForms.Application.Features.Answers.Commands.Update;
 using DomraSinForms.Domain.Models.Answers;
 
@@ -50,7 +50,7 @@ public class AnswersController : ControllerBase
     {
         var userId = _userManager.GetUserId(User);
 
-        var result = await _mediator.Send(new CreateFormAnswersCommand { FormId = formId, UserId = userId });
+        var result = await _mediator.Send(new CompleteFormAnswersCommand { FormId = formId, UserId = userId });
         if (result is not null)
             return Ok();
 

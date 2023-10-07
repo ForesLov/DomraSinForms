@@ -4,18 +4,18 @@ using DomraSinForms.Domain.Models.Answers;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace DomraSinForms.Application.Features.Answers.Commands.Create;
+namespace DomraSinForms.Application.Features.Answers.Commands.Complete;
 
-public class CreateFormAnswersCommandHandler : IRequestHandler<CreateFormAnswersCommand, FormAnswers?>
+public class CompleteFormAnswersCommandHandler : IRequestHandler<CompleteFormAnswersCommand, FormAnswers?>
 {
     private readonly IDatabaseContext _context;
 
-    public CreateFormAnswersCommandHandler(IDatabaseContext context)
+    public CompleteFormAnswersCommandHandler(IDatabaseContext context)
     {
         _context = context;
     }
 
-    public async Task<FormAnswers?> Handle(CreateFormAnswersCommand request, CancellationToken cancellationToken)
+    public async Task<FormAnswers?> Handle(CompleteFormAnswersCommand request, CancellationToken cancellationToken)
     {
         var formAnswers = await _context.Set<FormAnswers>()
             .Include(x => x.Answers)

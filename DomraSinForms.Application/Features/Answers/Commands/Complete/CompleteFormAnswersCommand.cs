@@ -1,9 +1,9 @@
 ﻿using DomraSinForms.Domain.Models.Answers;
 using MediatR;
 
-namespace DomraSinForms.Application.Features.Answers.Commands.Create;
+namespace DomraSinForms.Application.Features.Answers.Commands.Complete;
 
-public class CreateFormAnswersCommand : IRequest<FormAnswers?>
+public class CompleteFormAnswersCommand : IRequest<FormAnswers?>
 {
     public string UserId { get; set; } = "";
     public string FormId { get; set; } = "";
