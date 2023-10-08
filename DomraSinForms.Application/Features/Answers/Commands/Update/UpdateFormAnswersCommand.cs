@@ -3,9 +3,4 @@ using MediatR;
 
 namespace DomraSinForms.Application.Features.Answers.Commands.Update;
 
-public class UpdateFormAnswersCommand : IRequest<FormAnswers?>
-{
-    public string FormId { get; set; } = "";
-    public string UserId { get; set; } = "";
-    public Answer? Answer { get; set; }
-}
+public record UpdateFormAnswersCommand(Answer? Answer, string FormId, string UserId) : IRequest<FormAnswers?>;
