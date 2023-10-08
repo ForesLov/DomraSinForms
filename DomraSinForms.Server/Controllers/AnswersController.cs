@@ -6,8 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using DomraSinForms.Application.Features.Answers.Commands.Complete;
 using DomraSinForms.Application.Features.Answers.Commands.Update;
 using DomraSinForms.Domain.Models.Answers;
+using DomraSinForms.Application;
 
-namespace Forms.Mvc.Controllers;
+namespace DomraSinForms.Server.Controllers;
 
 public class AnswersController : ControllerBase
 {
@@ -24,36 +25,32 @@ public class AnswersController : ControllerBase
         _userManager = userManager;
         _logger = logger;
     }
+
     [HttpPost, Authorize]
     public async Task<IActionResult> UpdateFormAnswers([FromRoute] string formId, [FromBody] Answer viewModel)
     {
         var userId = _userManager.GetUserId(User);
 
-        var result = await _mediator.Send(new UpdateFormAnswersCommand
-        {
-            FormId = formId,
-            UserId = userId,
-            Answer = new()
+        var result = await _mediator.Send(new UpdateFormAnswersCommand(
+            new()
             {
                 QuestionId = viewModel.QuestionId,
                 Value = viewModel.Value,
-            }
-        });
+            }, formId, userId));
 
-        if (result is not null)
-            return Ok();
-        else
-            return BadRequest();
+        return result
+            .AsOption()
+            .Map<IActionResult>(Ok)
+            .Reduce(BadRequest());
     }
+
     [HttpPost, Authorize]
-    public async Task<IActionResult> CompleteForm(string formId)
+    public async Task<IActionResult> CompleteForm([FromRoute] string formId)
     {
         var userId = _userManager.GetUserId(User);
 
         var result = await _mediator.Send(new CompleteFormAnswersCommand { FormId = formId, UserId = userId });
-        if (result is not null)
-            return Ok();
 
-        return BadRequest();
+        return result.AsOption().Map<IActionResult>(Ok).Reduce(BadRequest());
     }
 }
