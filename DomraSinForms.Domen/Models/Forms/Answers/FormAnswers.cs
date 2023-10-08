@@ -10,8 +10,9 @@ public class FormAnswers : DbEntity
     public List<Answer> Answers { get; set; } = new();
     public bool IsCompleted { get; set; } = false;
     public DateTime CreationDate { get; set; }
-    public string UserId { get; set; } = string.Empty;
-    public User User { get; set; }
+    public string? Nickname { get; set; }
+    public string? UserId { get; set; }
+    public User? User { get; set; }
     /*public string? FormVersionId { get; set; }
     public FormVersion? FormVersion { get; set; }*/
 }
