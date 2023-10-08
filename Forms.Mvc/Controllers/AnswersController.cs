@@ -111,16 +111,15 @@ public class AnswersController : Controller
         if (userId is null)
             return RedirectToAction(nameof(Fill), routeValues: new { formId = viewModel.FormId });
 
-        var result = await _mediator.Send(new UpdateFormAnswersCommand(null)
-        {
-            FormId = viewModel.FormId,
-            UserId = userId,
-            Answer = new()
+        var result = await _mediator.Send(new UpdateFormAnswersCommand(
+            FormId: viewModel.FormId,
+            UserId: userId,
+            Answer: new()
             {
                 QuestionId = viewModel.QuestionId,
                 Value = viewModel.Value,
             }
-        });
+        ));
         if (result is not null)
             return RedirectToAction(nameof(Fill), routeValues: new { id = result.FormId });
 
