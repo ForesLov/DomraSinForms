@@ -13,3 +13,8 @@ public class Option<T> where T : class
 
     public T Reduce(T defaultValue) => _value ?? defaultValue;
 }
+
+public static class OptionExtensions
+{
+    public static Option<T> AsOption<T>(this T? obj) where T : class => Option<T>.Some(obj);
+}
