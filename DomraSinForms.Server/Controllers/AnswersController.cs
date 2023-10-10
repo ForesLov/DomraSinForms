@@ -14,16 +14,10 @@ public class AnswersController : ControllerBase
 {
     private readonly IMediator _mediator;
     private readonly UserManager<User> _userManager;
-    private readonly ILogger<AnswersController> _logger;
-
-    public AnswersController(
-        IMediator mediator,
-        UserManager<User> userManager,
-        ILogger<AnswersController> logger)
+    public AnswersController(IMediator mediator, UserManager<User> userManager)
     {
         _mediator = mediator;
         _userManager = userManager;
-        _logger = logger;
     }
 
     [HttpPost, Authorize]
@@ -52,5 +46,22 @@ public class AnswersController : ControllerBase
         var result = await _mediator.Send(new CompleteFormAnswersCommand { FormId = formId, UserId = userId });
 
         return result.AsOption().Map<IActionResult>(Ok).Reduce(BadRequest());
+    }
+
+    /// <summary>
+    /// Returns form object with all questions and its data (is it required, options, etc). 
+    /// If user authorized and has answer some questions already, returns filled answers.
+    /// </summary>
+    /// <param name="formId"></param>
+    /// <returns></returns>
+    [HttpPost]
+    public async Task<IActionResult> GetToFill([FromRoute] string formId)
+    {
+        return NotFound();
+    }
+    [HttpPost]
+    public async Task<IActionResult> GetScore([FromRoute] string formAnswersId)
+    {
+        return NotFound();
     }
 }
