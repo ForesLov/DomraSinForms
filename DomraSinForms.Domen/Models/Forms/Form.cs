@@ -18,4 +18,5 @@ public class Form : DbEntity
     public FormVersion? Version { get; set; }
     public bool IsInArchive { get; set; }
     public ICollection<User> Collaborators { get; set; }
+    public bool AllowAnonymousAnswers { get; set; } //TODO: Create migration for this property
 }
