@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DomraSin.Domain.Interfaces.Repositories;
 
-public interface IPictureItemsRepositiry
+public interface IPictureItemsRepository
 {
 
 }
